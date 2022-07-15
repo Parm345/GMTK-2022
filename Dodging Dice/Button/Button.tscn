@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Button" type="Node2D"]
+
+[node name="Button Head" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Button Head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button Head"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
