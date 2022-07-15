@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dice Roll 2RC.wav-4459d8b3a111aa094c8eeb5f076ea037.sample"
+
+[deps]
+
+source_file="res://Audio/Dice Roll 2RC.wav"
+dest_files=[ "res://.import/Dice Roll 2RC.wav-4459d8b3a111aa094c8eeb5f076ea037.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
