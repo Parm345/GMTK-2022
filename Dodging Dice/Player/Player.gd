@@ -1,9 +1,6 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal collided;
 
 const HORZ_MAX_SPEED = 50
 const HORZ_ACC = 10
@@ -38,6 +35,10 @@ func _physics_process(delta):
 		
 	velocity.x = clamp(velocity.x, -HORZ_MAX_SPEED, HORZ_MAX_SPEED)
 	
-	velocity = move_and_slide(velocity, UP)
+	velocity = move_and_slide(velocity, UP);
+	for i in get_slide_count():
+		var collision = get_slide_collision(i);
+		if collision:
+			emit_signal("collided", collision);
 #	print(velocity)
 	
