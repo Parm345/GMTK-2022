@@ -21,7 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Dodging Dice"
+run/main_scene="res://Scenes/Level 0.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/height=640
 
 [input]
 
