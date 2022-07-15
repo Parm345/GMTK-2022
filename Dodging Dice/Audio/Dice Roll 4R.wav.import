@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dice Roll 4R.wav-61a7f4e5e547dce9ee308cfdebfa660c.sample"
+
+[deps]
+
+source_file="res://Audio/Dice Roll 4R.wav"
+dest_files=[ "res://.import/Dice Roll 4R.wav-61a7f4e5e547dce9ee308cfdebfa660c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
