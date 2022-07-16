@@ -21,7 +21,7 @@ func _physics_process(delta):
 			global_position = target_position;
 			sliding = false;
 		else:
-			velocity = move_and_slide(velocity, Vector2(0, 0));
+			move_and_slide(velocity, Vector2(0, 0));
 		
 
 func move(direction):
