@@ -23,15 +23,21 @@ func _physics_process(delta):
 	if sliding:
 		if are_equal_approx(global_position, target_position):
 			global_position = target_position;
-			sliding = false;
-#			randomize_value();
+			sliding = false; #end of movement
+			if value != 0:
+				randomize_value();
 		else:
 			global_position += velocity/60.0;
 		
 
 func move(direction):
-	var front_position:Vector2 = global_position/32+direction;
-	if sliding || walls.get_cell(front_position.x, front_position.y)==WALL:
+	#check for walls/dies in path
+	var tile_position:Vector2 = walls.world_to_map(global_position);
+	for i in range(value):
+		tile_position += direction;
+		if walls.get_cell(tile_position.x, tile_position.y)==WALL:
+			return;
+	if sliding:
 		return;
 	target_position = global_position + direction*value*tile_size;
 	velocity = speed*direction;
