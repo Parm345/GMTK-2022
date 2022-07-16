@@ -10,6 +10,7 @@ var isMoving = false
 var checkTile = false
 var movedAlongTile = 0
 var moveCoolDown = false
+var currentTile
 
 onready var ray = $RayCast2D
 onready var ray2 = $RayCast2D2
@@ -19,6 +20,7 @@ onready var tween = $Tween
 func _ready():
 	position = position.snapped(Vector2.ONE * tileSize)
 	position += Vector2.ONE * tileSize/2 # makes sure that the player is always centered
+	currentTile = global_position
 
 func playerCollision(playerFacingDirection:Vector2):
 #	position = position.snapped(Vector2.ONE * tileSize)
@@ -30,6 +32,7 @@ func playerCollision(playerFacingDirection:Vector2):
 			isMoving = true
 		tilesMoved = 0
 		movedAlongTile = 0
+		currentTile = global_position
 #		get_tree().paused = true
 
 func moveTween():
@@ -52,6 +55,7 @@ func move():
 			tilesMoved += 1
 			movedAlongTile = 0
 			print(tilesMoved)
+			currentTile = global_position
 #			get_tree().paused = true
 	if ray.is_colliding():
 		tilesMoved = dieValue
@@ -60,7 +64,8 @@ func move():
 	if tilesMoved == dieValue and isMoving:
 		castDirection = Vector2()
 		isMoving = false
-		position = position.snapped(Vector2.ONE * tileSize)
+#		position = position.snapped(Vector2.ONE * tileSize)
+		global_position = currentTile
 		$"Move Delay".start()
 		moveCoolDown = true
 
