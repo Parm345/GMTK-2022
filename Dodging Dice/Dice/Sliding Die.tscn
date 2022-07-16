@@ -20,6 +20,10 @@ script = ExtResource( 8 )
 position = Vector2( 16, 16 )
 shape = SubResource( 1 )
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 16, 16 )
+enabled = true
+
 [node name="Snap SFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
 

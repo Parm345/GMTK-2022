@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
 const WALL:int = 0;
+const NOTHING:int = -1;
 onready var walls:Node = get_parent();
 onready var snap:Node = $"Snap SFX";
+onready var ray:Node = $"RayCast2D";
 var rng = RandomNumberGenerator.new();
 var tile_size:float = 32;
 var value:int = 1;
@@ -22,8 +24,8 @@ func _ready():
 	dice_sprites[value].visible = true;
 
 func _physics_process(delta):
-#	print(sliding, target_position, value);
 	if sliding:
+		prints(sliding, global_position, target_position, value);
 		if are_equal_approx(global_position, target_position, 1.0):
 			global_position = target_position;
 			sliding = false; #end of movement
@@ -40,16 +42,21 @@ func _physics_process(delta):
 				play_sound(snap, -2);
 
 func move(direction):
-	#check for walls/dies in path
+	#check for dies in path
+	ray.cast_to = value*tile_size*direction;
+	if ray.is_colliding() && ray.get_collider().is_in_group("dice"):
+		return;
+	#check for walls in path
 	var tile_position:Vector2 = walls.world_to_map(global_position);
 	for i in range(value):
 		tile_position += direction;
 		if walls.get_cell(tile_position.x, tile_position.y)==WALL:
 			return;
+	#check if already moving
 	if sliding:
 		return;
 	self.direction = direction;
-	target_position = global_position + direction*value*tile_size;
+	target_position = rounded_multiple(global_position,32) + direction*value*tile_size;
 	velocity = speed*direction;
 	randomize_at_stop = true;
 	sliding = true;
@@ -82,8 +89,8 @@ func rounded_direction(v, direction):
 	return v;
 
 func rounded_multiple(v, n):
-	v.x = n*round(v.x/float(n));
-	v.y = n*round(v.y/float(n));
+	v.x = int(n*round(v.x/float(n)));
+	v.y = int(n*round(v.y/float(n)));
 	return v;
 
 func rounded(v):

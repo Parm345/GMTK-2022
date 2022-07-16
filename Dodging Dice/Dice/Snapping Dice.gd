@@ -57,7 +57,7 @@ func move():
 			print(tilesMoved)
 			currentTile = global_position
 #			get_tree().paused = true
-	if ray.is_colliding():
+	if ray2.is_colliding():
 		tilesMoved = dieValue
 
 	
