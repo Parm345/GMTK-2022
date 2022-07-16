@@ -32,3 +32,6 @@ cast_to = Vector2( 0, 17 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Move Delay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Move Delay" to="." method="_on_Move_Delay_timeout"]

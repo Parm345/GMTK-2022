@@ -9,6 +9,7 @@ var tilesMoved = dieValue
 var isMoving = false
 var checkTile = false
 var movedAlongTile = 0
+var moveCoolDown = false
 
 onready var ray = $RayCast2D
 onready var ray2 = $RayCast2D2
@@ -21,7 +22,7 @@ func _ready():
 
 func playerCollision(playerFacingDirection:Vector2):
 #	position = position.snapped(Vector2.ONE * tileSize)
-	if !isMoving:
+	if !isMoving and !moveCoolDown:
 		ray.cast_to = playerFacingDirection * dieValue * tileSize
 		ray.force_raycast_update()
 		if !ray.is_colliding():
@@ -56,11 +57,16 @@ func move():
 		tilesMoved = dieValue
 
 	
-	if tilesMoved == dieValue:
+	if tilesMoved == dieValue and isMoving:
 		castDirection = Vector2()
 		isMoving = false
 		position = position.snapped(Vector2.ONE * tileSize)
+		$"Move Delay".start()
+		moveCoolDown = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	move()
+
+func _on_Move_Delay_timeout():
+	moveCoolDown = false
