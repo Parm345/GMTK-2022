@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var t:float = 32;
 var value:int = 1;
-var speed:float = 32;
+var speed:float = 128;
 var dice_sprites = [];
 var distance:float = 0;
 

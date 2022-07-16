@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 const UP = Vector2(0, -1)
-const tileSize = 16
+const tileSize = 32
 
 export var speed = 5
 
-var dieValue = 2
+var dieValue = 1
 var velocity:Vector2 = Vector2()
 var travelDistance = dieValue * tileSize
 var targetPosition: Vector2
