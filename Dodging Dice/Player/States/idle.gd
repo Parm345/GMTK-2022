@@ -12,8 +12,10 @@ func enter(scriptParent):
 	parent.velocity.x = 0 
 
 func changeParentState():
+#	print(parent.is_on_floor())
 	if parent.is_on_floor() and isJumping:
 		isJumping = false
+		print("hi")
 		return states.jump
 	if abs(parent.velocity.x) > 0:
 		return states.run

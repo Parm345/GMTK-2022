@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal collided;
 
 const weight:int = 2;
-const DASH_SPEED = 75
+const DASH_SPEED = 160
 const DASH_RANGE = DASH_SPEED * 2
 const HORZ_MAX_SPEED = 100
 const HORZ_ACC = 25
@@ -37,10 +37,15 @@ func _physics_process(delta):
 	if $FSM.curState != $FSM/dash:
 		velocity.x = clamp(velocity.x, -HORZ_MAX_SPEED, HORZ_MAX_SPEED)
 	
-	velocity = move_and_slide(velocity, UP);
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.has_method("playerCollision") and is_on_ceiling():
+		if collision.collider.has_method("playerCollision"):
 			collision.collider.playerCollision(collision.normal*-1) # -1 to return the direction player is facing
-#	print(velocity)
 	
+	move_and_slide(velocity, UP);
+
+#	print(velocity)
+#
+#func _input(event):
+#	if event.is_action_pressed("jump"):
+#		velocity.x

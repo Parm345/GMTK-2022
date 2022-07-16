@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sprites/Dice 32-CC-1.png" type="Texture" id=1]
-[ext_resource path="res://Dice/Bouncing Die 2.gd" type="Script" id=2]
+[ext_resource path="res://Dice/Bouncing Die.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15.5, 15.5 )
@@ -18,5 +18,3 @@ shape = SubResource( 2 )
 [node name="Move Timer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
-
-[connection signal="timeout" from="Move Timer" to="." method="_on_Fall_Timer_timeout"]

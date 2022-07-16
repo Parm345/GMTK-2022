@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 const tileSize = 32
@@ -34,7 +34,10 @@ func _physics_process(delta):
 		velocity = Vector2()
 		global_position = targetPosition
 		
-	position +=
+	var collision = move_and_collide(velocity)
+	if collision != null:
+		velocity = Vector2()
+		targetPosition = global_position
 
 func _on_Fall_Timer_timeout():
 	velocity = velocityDirection * speed
