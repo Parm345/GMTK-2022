@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Level 0.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Coin Icon 2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Coin Bar.png" type="Texture" id=3]
+[ext_resource path="res://GUI/Theme 1.tres" type="Theme" id=4]
 
 [node name="Game" type="Node2D"]
 
@@ -9,5 +12,37 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Coin Counter" type="HBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.04
+anchor_top = 0.05
+anchor_right = 0.04
+anchor_bottom = 0.05
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Coin Icon" type="MarginContainer" parent="CanvasLayer/Coin Counter"]
+margin_right = 96.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Coin Counter/Coin Icon"]
+margin_right = 96.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
+[node name="Coin Bar" type="MarginContainer" parent="CanvasLayer/Coin Counter"]
+margin_left = 100.0
+margin_right = 196.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Coin Counter/Coin Bar"]
+margin_right = 96.0
+margin_bottom = 63.0
+theme = ExtResource( 4 )
+text = "123
+
+"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Coin Counter/Coin Bar"]
+margin_right = 96.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )

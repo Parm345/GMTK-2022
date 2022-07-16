@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Dice/Sliding Die.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=4]
 
 [node name="Level 1" type="Node2D"]
 
@@ -68,3 +69,12 @@ position = Vector2( 64, 576 )
 
 [node name="Player 2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 148 )
+
+[node name="Coin 1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 96, 96 )
+
+[node name="Coin 2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, 96 )
+
+[node name="Coin 3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 128, 224 )
