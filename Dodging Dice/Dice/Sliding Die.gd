@@ -31,10 +31,11 @@ func _physics_process(delta):
 				randomize_value();
 		else:
 			global_position += velocity*delta;
-			var collision = move_and_collide(velocity*0);
+			var collision = move_and_collide(Vector2(0,0));
 			if collision:
 				if collision.collider.is_in_group("players") && collision.get_normal()==-direction:
 					retreat();
+			#snap sound
 			if !snap.playing && are_equal_approx(global_position, rounded_multiple(global_position, 32), 1):
 				play_sound(snap, -2);
 
