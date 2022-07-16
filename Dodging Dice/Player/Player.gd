@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 signal collided;
 
+const weight:int = 2;
 const HORZ_MAX_SPEED = 50
 const HORZ_ACC = 10
 const UP = Vector2(0, -1)
