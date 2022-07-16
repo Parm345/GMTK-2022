@@ -3,8 +3,8 @@ extends KinematicBody2D
 signal collided;
 
 const weight:int = 2;
-const HORZ_MAX_SPEED = 50
-const HORZ_ACC = 10
+const HORZ_MAX_SPEED = 100
+const HORZ_ACC = 25
 const UP = Vector2(0, -1)
 
 export var jumpForce = 500
@@ -38,8 +38,8 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, UP);
 	for i in get_slide_count():
-		var collision = get_slide_collision(i);
-		if collision:
-			emit_signal("collided", collision);
+		var collision = get_slide_collision(i)
+		if collision.collider.has_method("playerCollision") and is_on_ceiling():
+			collision.collider.playerCollision(collision.normal*-1) # -1 to return the direction player is facing
 #	print(velocity)
 	
