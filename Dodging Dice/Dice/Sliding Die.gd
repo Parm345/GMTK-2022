@@ -25,7 +25,7 @@ func _ready():
 
 func _physics_process(delta):
 	if sliding:
-		prints(sliding, global_position, target_position, value);
+#		prints(sliding, global_position, target_position, value);
 		if are_equal_approx(global_position, target_position, 1.0):
 			global_position = target_position;
 			sliding = false; #end of movement
@@ -44,6 +44,7 @@ func _physics_process(delta):
 func move(direction):
 	#check for dies in path
 	ray.cast_to = value*tile_size*direction;
+	ray.force_raycast_update();
 	if ray.is_colliding() && ray.get_collider().is_in_group("dice"):
 		return;
 	#check for walls in path
