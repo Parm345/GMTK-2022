@@ -5,7 +5,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 
 [node name="Dice Test" type="Node2D"]
-position = Vector2( -12, -51 )
+position = Vector2( 6, 16 )
 
 [node name="Test Platform" parent="." instance=ExtResource( 1 )]
 position = Vector2( 503, 78.5 )
@@ -26,7 +26,7 @@ rotation = 1.5708
 scale = Vector2( 12.7812, 0.382813 )
 
 [node name="Bouncing Die" parent="." instance=ExtResource( 2 )]
-position = Vector2( 562, 427 )
+position = Vector2( 564, 444 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 392, 372 )

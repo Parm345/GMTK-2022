@@ -5,6 +5,7 @@ extends player_state
 # var b = "text"
 
 var isJumping = false
+var isDashing = false
 var stoppedMoving = false
 
 # Called when the parent enters the state
@@ -23,8 +24,13 @@ func changeParentState():
 		return states.jump
 	if stoppedMoving:
 		return states.idle
+	if isDashing:
+		isDashing = false
+		return states.dash
 	return null
 	
 func handleInput(event):
 	if event.is_action_pressed("jump"):
 		isJumping = true
+	if event.is_action_pressed("dash"):
+		isDashing = true

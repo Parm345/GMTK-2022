@@ -6,6 +6,7 @@ extends player_state
 
 var jumpForce
 var isHoldingJump = true
+var isDashing = false
 
 # Called when the parent enters the state
 func enter(scriptParent):
@@ -13,6 +14,7 @@ func enter(scriptParent):
 	jumpForce = parent.jumpForce
 	parent.velocity.y = -jumpForce
 	isHoldingJump = true
+	isDashing = false
 	# jump animation 
 
 func exit():
@@ -33,7 +35,10 @@ func inPhysicsProcess(delta):
 func changeParentState():
 	if parent.is_on_floor():
 		return states.idle
+	if isDashing and !isHoldingJump:
+		return states.dash
 	return null
 
 func handleInput(event):
-	pass
+	if event.is_action_pressed("dash"):
+		isDashing = true
