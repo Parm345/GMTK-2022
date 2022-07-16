@@ -7,7 +7,7 @@ var grounded:bool = true;
 var hforce:float = 6.5;
 var width:float = 24;
 var height:float = 24;
-var jump_force:float = 270;
+var jump_force:float = 280;
 var mass:float = 540;
 var velocity:Vector2 = Vector2(0, 0);
 var MU_AIR:float = 0.001;
@@ -55,4 +55,3 @@ func _physics_process(delta):
 		if grounded:
 			emit_signal("airborned");
 		grounded = false;
-

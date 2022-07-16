@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 12 )
 
-[node name="Player 2" type="KinematicBody2D"]
+[node name="Player 2" type="KinematicBody2D" groups=["players"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

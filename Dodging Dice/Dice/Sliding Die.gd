@@ -8,9 +8,11 @@ var value:int = 1;
 var dice_sprites = [];
 var distance:float = 0;
 var speed:float = 32;
+var direction:Vector2 = Vector2(0, 0); #normalized velocity vector
 var velocity:Vector2 = Vector2(0, 0);
 var target_position:Vector2 = Vector2(0, 0);
 var sliding:bool = false;
+var randomize_at_stop:bool = true;
 
 func _ready():
 	for i in range(7):
@@ -19,16 +21,20 @@ func _ready():
 	dice_sprites[value].visible = true;
 
 func _physics_process(delta):
-	print(sliding, global_position);
+#	print(sliding, target_position, value);
 	if sliding:
-		if are_equal_approx(global_position, target_position):
+		if are_equal_approx(global_position, target_position, 1.0):
 			global_position = target_position;
 			sliding = false; #end of movement
-			if value != 0:
+			if randomize_at_stop && value != 0:
 				randomize_value();
 		else:
-			global_position += velocity/60.0;
-		
+			global_position += velocity*delta;
+			var collision = move_and_collide(velocity*0);
+			if collision:
+				print("COLLISION");
+				if collision.collider.is_in_group("players") && collision.get_normal()==-direction:
+					retreat();
 
 func move(direction):
 	#check for walls/dies in path
@@ -39,21 +45,53 @@ func move(direction):
 			return;
 	if sliding:
 		return;
+	self.direction = direction;
 	target_position = global_position + direction*value*tile_size;
 	velocity = speed*direction;
+	randomize_at_stop = true;
 	sliding = true;
+
+func retreat(): #move backwards to nearest tile
+	var old_target_position:Vector2 = target_position;
+	target_position = tile_size*rounded(global_position/tile_size-direction, direction);
+	direction = -direction;
+	velocity = -velocity;
+	randomize_at_stop = false;
+	#deduct distance traveled from value
+	#skill required to catch and stop die
+	var new_value:int = grid_distance(target_position/tile_size, old_target_position/tile_size);
+	change_value(new_value);
 		
-func are_equal_approx(position1, position2):
-	if abs(position1.x-position2.x) < 1 && abs(position1.y-position2.y) < 1:
+func are_equal_approx(position1, position2, tolerance):
+	if abs(position1.x-position2.x) < tolerance && abs(position1.y-position2.y) < tolerance:
 		return true;
 	return false;
 
+func rounded(v, direction):
+	if direction.x > 0:
+		v.x = ceil(v.x);
+	elif direction.x < 0:
+		v.x = floor(v.x);
+	if direction.y > 0:
+		v.y = ceil(v.y);
+	elif direction.y < 0:
+		v.y = floor(v.y);
+	return v;
+
+func grid_distance(v1, v2):
+	return abs(v1.x-v2.x)+abs(v1.y-v2.y);
+
 func randomize_value():
-	dice_sprites[value].visible = false;
 	rng.randomize();
 	var rand:float = rng.randf_range(0,1);
+	var new_value:int = 0;
 	if rand < 0.4:
-		value = 0;
+		new_value = 0;
 	else:
-		value = ceil((rand-0.4)/0.1);
+		new_value = ceil((rand-0.4)/0.1);
+	change_value(new_value);
+
+func change_value(new_value):
+	dice_sprites[value].visible = false;
+	value = new_value;
 	dice_sprites[value].visible = true;
