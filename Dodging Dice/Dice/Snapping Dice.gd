@@ -2,7 +2,7 @@ extends StaticBody2D
 
 export var speed = 3
 
-var dieValue = 4
+var dieValue = 3
 var tileSize = 32
 var castDirection: Vector2 = Vector2()
 var tilesMoved = dieValue
@@ -18,9 +18,12 @@ func _ready():
 
 func playerCollision(playerFacingDirection:Vector2):
 	if !isMoving:
-		castDirection = playerFacingDirection
+		ray.cast_to = playerFacingDirection * dieValue * tileSize
+		ray.force_raycast_update()
+		if !ray.is_colliding():
+			castDirection = playerFacingDirection
+			isMoving = true
 		tilesMoved = 0
-		isMoving = true
 #		get_tree().paused = true
 
 func moveTween():
