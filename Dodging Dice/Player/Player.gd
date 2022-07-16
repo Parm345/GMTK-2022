@@ -11,9 +11,9 @@ const UP = Vector2(0, -1)
 
 export var jumpForce = 500
 var gravity = 15
-
 var velocity:Vector2 = Vector2()
 var isFacingRight = true
+var hasJumped = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,11 +36,6 @@ func _physics_process(delta):
 	
 	if $FSM.curState != $FSM/dash:
 		velocity.x = clamp(velocity.x, -HORZ_MAX_SPEED, HORZ_MAX_SPEED)
-	
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.has_method("playerCollision") and !is_on_floor():
-			collision.collider.playerCollision(collision.normal*-1) # -1 to return the direction player is facing
 	
 	move_and_slide(velocity, UP);
 

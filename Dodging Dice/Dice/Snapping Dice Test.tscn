@@ -21,10 +21,10 @@ __meta__ = {
 }
 
 [node name="StaticBody2D2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 656, 529 )
+position = Vector2( 477, 493 )
 
 [node name="StaticBody2D3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 627, 530 )
+position = Vector2( 447, 494 )
 
 [node name="StaticBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 595, 531 )
+position = Vector2( 48, 527 )

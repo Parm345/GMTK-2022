@@ -15,10 +15,12 @@ func enter(scriptParent):
 	parent.velocity.y = -jumpForce
 	isHoldingJump = true
 	isDashing = false
+	parent.hasJumped = true
 	# jump animation 
 
 func exit():
 	parent.velocity.y = 0
+	parent.hasJumped = false
 	for i in parent.get_slide_count():
 		var collision = parent.get_slide_collision(i)
 		if collision.collider.has_method("playerCollision"):
@@ -26,14 +28,18 @@ func exit():
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame. Run in FSM _physics_process.
 func inPhysicsProcess(delta):
-	if !isHoldingJump:
+	if !isHoldingJump or parent.velocity.y > 0:
 		parent.velocity.y += parent.gravity * 2
 	if Input.is_action_just_released("jump"):
 		isHoldingJump = false
 		# fall animation 
+	for i in parent.get_slide_count():
+		var collision = parent.get_slide_collision(i)
+		if collision.collider.has_method("playerCollision") and !parent.is_on_floor():
+			collision.collider.playerCollision(collision.normal*-1) # -1 to return the direction player is facing
 
 func changeParentState():
-	if parent.is_on_floor():
+	if parent.is_on_floor() or parent.is_on_ceiling():
 		return states.idle
 	if isDashing and !isHoldingJump:
 		return states.dash

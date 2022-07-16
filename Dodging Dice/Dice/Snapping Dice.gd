@@ -2,10 +2,11 @@ extends StaticBody2D
 
 export var speed = 3
 
-var dieValue = 1
-var tileSize = 16
-var castDirection: Vector2
+var dieValue = 4
+var tileSize = 32
+var castDirection: Vector2 = Vector2()
 var tilesMoved = dieValue
+var isMoving = false
 
 onready var ray = $RayCast2D
 onready var tween = $Tween
@@ -16,28 +17,32 @@ func _ready():
 	position += Vector2.ONE * tileSize/2 # makes sure that the player is always centered
 
 func playerCollision(playerFacingDirection:Vector2):
-	castDirection = playerFacingDirection
-	tilesMoved = 0
+	if !isMoving:
+		castDirection = playerFacingDirection
+#		print(castDirection)
+		tilesMoved = 0
+		isMoving = true
 
 func moveTween():
-	tween.interpolate_property(self, "position", position, position + castDirection * tileSize *2, 
+	tween.interpolate_property(self, "position", position, position + castDirection * tileSize, 
 		1.0/speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 	
 func move():
-	ray.cast_to = castDirection * tileSize * 2
+	ray.cast_to = castDirection * tileSize/2
 	ray.force_raycast_update()
-	if !ray.is_colliding() and tilesMoved <= dieValue-1:
-#		position += castDirection * tileSize * 2
-		moveTween()
-		tilesMoved += 1
+	if !ray.is_colliding() and tilesMoved < dieValue and isMoving:
+		position += castDirection * tileSize/2
+#		moveTween()
+		tilesMoved += 0.5
+	if ray.is_colliding():
+		tilesMoved = dieValue
 	
 #	position += Vector2.ONE * tileSize/2 # makes sure that the player is always centered
 	
 	if tilesMoved == dieValue:
-#		position = position.snapped(Vector2.ONE * tileSize)
-		pass
+		isMoving = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	move()
