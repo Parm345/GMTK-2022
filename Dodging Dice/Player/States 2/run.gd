@@ -15,6 +15,10 @@ func enter(scriptParent):
 func inPhysicsProcess(delta):
 	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
 		stoppedMoving = true
+	if !parent.is_on_floor():
+		parent.playAnimation("fall")
+	else:
+		parent.playAnimation("run")
 	
 
 func changeParentState():

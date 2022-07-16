@@ -12,6 +12,12 @@ func enter(scriptParent):
 	parent.velocity.x = 0
 	parent.playAnimation("idle") 
 
+func inPhysicsProcess(delta):
+	if !parent.is_on_floor():
+		parent.playAnimation("fall")
+	else:
+		parent.playAnimation("idle")
+
 func changeParentState():
 #	print(parent.is_on_floor())
 	if parent.is_on_floor() and isJumping:
