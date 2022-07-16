@@ -46,7 +46,7 @@ script = ExtResource( 6 )
 script = ExtResource( 7 )
 
 [node name="Dash Time" type="Timer" parent="FSM/dash"]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="FSM/dash/Dash Time" to="FSM/dash" method="_on_Dash_Time_timeout"]

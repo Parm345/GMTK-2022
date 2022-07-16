@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal collided;
 
 const weight:int = 2;
-const DASH_SPEED = 160
+const DASH_SPEED = 750
 const DASH_RANGE = DASH_SPEED * 2
 const HORZ_MAX_SPEED = 100
 const HORZ_ACC = 25
@@ -33,6 +33,8 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= HORZ_ACC
 		isFacingRight = false
+	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
+		velocity.x = 0
 	
 	if $FSM.curState != $FSM/dash:
 		velocity.x = clamp(velocity.x, -HORZ_MAX_SPEED, HORZ_MAX_SPEED)

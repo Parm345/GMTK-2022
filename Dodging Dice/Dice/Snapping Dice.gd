@@ -7,7 +7,6 @@ var tileSize = 32
 var castDirection: Vector2 = Vector2()
 var tilesMoved = dieValue
 var isMoving = false
-var movingSideWays = false
 
 onready var ray = $RayCast2D
 onready var tween = $Tween
@@ -20,12 +19,6 @@ func _ready():
 func playerCollision(playerFacingDirection:Vector2):
 	if !isMoving:
 		castDirection = playerFacingDirection
-		if castDirection.x != 0:
-			movingSideWays = true
-			castDirection *= 2
-		else:
-			movingSideWays = false
-#		print(castDirection)
 		tilesMoved = 0
 		isMoving = true
 #		get_tree().paused = true
@@ -36,17 +29,16 @@ func moveTween():
 	tween.start()
 	
 func move():
-	ray.cast_to = castDirection * tileSize/2
+	ray.cast_to = castDirection * tileSize
 	ray.force_raycast_update()
 	if !ray.is_colliding() and tilesMoved < dieValue and isMoving:
-		position += castDirection * tileSize/2
+		position += castDirection * tileSize
 #		moveTween()
-		tilesMoved += 0.5 + int(movingSideWays)*0.5
+		tilesMoved += 1
 	if ray.is_colliding():
 		tilesMoved = dieValue
 		print("yo")
-	
-#	position += Vector2.ONE * tileSize/2 # makes sure that the player is always centered
+
 	
 	if tilesMoved == dieValue:
 		castDirection = Vector2()
