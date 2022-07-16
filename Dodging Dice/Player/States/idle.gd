@@ -9,7 +9,8 @@ var isJumping = false
 # Called when the parent enters the state
 func enter(scriptParent):
 	parent = scriptParent
-	parent.velocity.x = 0 
+	parent.velocity.x = 0
+	parent.playAnimation("idle") 
 
 func changeParentState():
 #	print(parent.is_on_floor())
@@ -23,3 +24,4 @@ func changeParentState():
 func handleInput(event):
 	if event.is_action_pressed("jump"):
 		isJumping = true
+#		print(get_parent().curState)

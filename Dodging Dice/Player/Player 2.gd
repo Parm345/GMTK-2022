@@ -4,49 +4,42 @@ signal jumped;
 signal landed;
 signal airborned;
 var grounded:bool = true;
-var hforce:float = 6.5;
+var maxSpeed = 100
+var hforce:float = 10;
 var width:float = 24;
 var height:float = 24;
-var jump_force:float = 280;
-var mass:float = 540;
+var jump_force:float = 450;
+var gravity:float = 15;
 var velocity:Vector2 = Vector2(0, 0);
 var MU_AIR:float = 0.001;
 var MU_H:float = 0.06;
 
+func _ready():
+	$FSM.setState($FSM.states.idle)
 
-func _input(event):
-	if event.is_action_pressed("jump") and is_on_floor():
-		velocity.y -= jump_force;
-		emit_signal("jumped");
+#func _input(event):
+#	if event.is_action_pressed("jump") and is_on_floor():
+#		pass
 
 func _physics_process(delta):
 	#horizontal movement
 	#if is_on_floor():
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= hforce;
-		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
-		$AnimatedSprite.play("run")
+#		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
 		$AnimatedSprite.flip_h = true
 	if Input.is_action_pressed("ui_right"):
-		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
+#		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
 		velocity.x += hforce;
-		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = false
 	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
 		velocity.x = 0
 		$AnimatedSprite.play("idle")
 	
+	velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
+	
 	#gravity
-	velocity.y += mass*delta;
-	
-	#air resistance
-	velocity.x -= MU_AIR*velocity.x;
-	velocity.y -= MU_AIR*velocity.y;
-	#var v2 = velocity.x;
-	
-	#horizontal resistance
-	velocity.x -= MU_H*velocity.x;
-	#var v3 = velocity.y;
+	velocity.y += gravity;
 
 	#move
 	velocity = move_and_slide(velocity, Vector2.UP);
@@ -59,8 +52,16 @@ func _physics_process(delta):
 	if is_on_floor():
 		if !grounded:
 			emit_signal("landed");
+			$AnimatedSprite.play("idle")
 		grounded = true;
 	else:
 		if grounded:
 			emit_signal("airborned");
 		grounded = false;
+
+func jump():
+	velocity.y -= jump_force;
+	emit_signal("jumped")
+
+func playAnimation(animation:String):
+	$AnimatedSprite.play(animation)
