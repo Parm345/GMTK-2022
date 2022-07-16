@@ -41,6 +41,10 @@ func _physics_process(delta):
 
 	#move
 	velocity = move_and_slide(velocity, Vector2.UP);
+	for i in get_slide_count():
+		var collision = get_slide_collision(i);
+		if collision.collider.is_in_group("dice"):
+			collision.collider.move(-collision.get_normal());
 	
 	#landed/airborned signal
 	if is_on_floor():
