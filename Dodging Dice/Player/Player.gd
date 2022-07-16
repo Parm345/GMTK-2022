@@ -2,11 +2,11 @@ extends KinematicBody2D
 
 signal collided;
 
-
+const weight:int = 2;
+const HORZ_MAX_SPEED = 50
+const HORZ_ACC = 10
 const UP = Vector2(0, -1)
 
-export var HORZ_MAX_SPEED = 100
-export var HORZ_ACC = 25
 export var jumpForce = 500
 var gravity = 15
 
@@ -39,5 +39,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, UP);
 	for i in get_slide_count():
 		var collision = get_slide_collision(i);
+		if collision:
+			emit_signal("collided", collision);
 #	print(velocity)
 	

@@ -1,7 +1,7 @@
 extends TileMap
 
 onready var player:Node = $"../Player";
-var timer = preload("res://Scenes/Timer (Oneshot).tscn");
+#var timer = preload("res://Scenes/Timer (Oneshot).tscn");
 var solid_time:float = 48;
 const NOTHING:int = -1;
 var room_tx:int = 32;
