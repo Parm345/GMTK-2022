@@ -15,6 +15,12 @@ func enter(scriptParent):
 	isHoldingJump = true
 	# jump animation 
 
+func exit():
+	parent.velocity.y = 0
+	for i in parent.get_slide_count():
+		var collision = parent.get_slide_collision(i)
+		if collision.collider.has_method("playerCollision"):
+			collision.collider.playerCollision(collision.normal*-1) # -1 to return the direction player is facing
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame. Run in FSM _physics_process.
 func inPhysicsProcess(delta):
