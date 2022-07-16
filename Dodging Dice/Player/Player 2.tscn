@@ -1,31 +1,18 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Sprites/Player/Player Sprite Sheets/idle-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player 2.gd" type="Script" id=2]
 [ext_resource path="res://Audio/Coin 7.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sprites/Player/Player Sprite Sheets/run animation-Sheet.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Player/Player Sprite Sheets/jump animation-Sheet.png" type="Texture" id=5]
 [ext_resource path="res://Player/States 2/jump.gd" type="Script" id=6]
 [ext_resource path="res://Player/FSM.gd" type="Script" id=7]
 [ext_resource path="res://Player/States/idle.gd" type="Script" id=8]
 [ext_resource path="res://Player/States 2/run.gd" type="Script" id=9]
 [ext_resource path="res://Player/States 2/dash.gd" type="Script" id=10]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
-
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 5 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 4 )
@@ -43,52 +30,21 @@ region = Rect2( 96, 0, 48, 48 )
 atlas = ExtResource( 4 )
 region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 5 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 5 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 5 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 48, 48 )
-
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "idle",
-"speed": 1.0
-}, {
-"frames": [ SubResource( 17 ), SubResource( 20 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "run",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ) ],
-"loop": true,
-"name": "jump start",
-"speed": 10.0
-}, {
-"frames": [ SubResource( 21 ) ],
-"loop": true,
-"name": "land",
-"speed": 5.0
+"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 4.75, 7 )
+extents = Vector2( 5, 7.5 )
 
 [node name="Player 2" type="KinematicBody2D" groups=["players"]]
 scale = Vector2( 2, 2 )
@@ -96,7 +52,6 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )
-animation = "jump start"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
