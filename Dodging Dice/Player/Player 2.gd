@@ -24,9 +24,11 @@ func _physics_process(delta):
 	#if is_on_floor():
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= hforce;
+		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
 		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = true
 	if Input.is_action_pressed("ui_right"):
+		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
 		velocity.x += hforce;
 		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = false
