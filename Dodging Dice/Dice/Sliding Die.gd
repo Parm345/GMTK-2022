@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+const WALL:int = 0;
+onready var walls:Node = get_parent();
+var rng = RandomNumberGenerator.new();
 var tile_size:float = 32;
 var value:int = 1;
 var dice_sprites = [];
@@ -16,16 +19,19 @@ func _ready():
 	dice_sprites[value].visible = true;
 
 func _physics_process(delta):
+	print(sliding, global_position);
 	if sliding:
 		if are_equal_approx(global_position, target_position):
 			global_position = target_position;
 			sliding = false;
+#			randomize_value();
 		else:
-			move_and_slide(velocity, Vector2(0, 0));
+			global_position += velocity/60.0;
 		
 
 func move(direction):
-	if sliding:
+	var front_position:Vector2 = global_position/32+direction;
+	if sliding || walls.get_cell(front_position.x, front_position.y)==WALL:
 		return;
 	target_position = global_position + direction*value*tile_size;
 	velocity = speed*direction;
@@ -35,3 +41,13 @@ func are_equal_approx(position1, position2):
 	if abs(position1.x-position2.x) < 1 && abs(position1.y-position2.y) < 1:
 		return true;
 	return false;
+
+func randomize_value():
+	dice_sprites[value].visible = false;
+	rng.randomize();
+	var rand:float = rng.randf_range(0,1);
+	if rand < 0.4:
+		value = 0;
+	else:
+		value = ceil((rand-0.4)/0.1);
+	dice_sprites[value].visible = true;
