@@ -9,6 +9,7 @@ onready var jumpForce = parent.jump_force
 var animations = ["jump start", "fall"]
 var currentAnimation = null
 var isHoldingJump = true
+var inAir = false
 
 # Called when the parent enters the state
 func enter(scriptParent):
@@ -32,7 +33,8 @@ func inPhysicsProcess(delta):
 		isHoldingJump = false
 	
 	if !isHoldingJump:
-		parent.velocity.y += parent.gravity 
+		parent.velocity.y += parent.gravity
+ 
 
 func changeParentState():
 	if parent.is_on_floor():

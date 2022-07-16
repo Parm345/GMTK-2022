@@ -5,7 +5,6 @@ extends player_state
 # var b = "text"
 
 var isJumping = false
-
 # Called when the parent enters the state
 func enter(scriptParent):
 	parent = scriptParent
@@ -17,6 +16,9 @@ func inPhysicsProcess(delta):
 		parent.playAnimation("fall")
 	else:
 		parent.playAnimation("idle")
+	
+	if !parent.get_node("Jump Margin").is_colliding() and isJumping:
+		isJumping = false
 
 func changeParentState():
 #	print(parent.is_on_floor())

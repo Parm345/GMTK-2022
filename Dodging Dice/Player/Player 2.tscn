@@ -88,7 +88,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 5, 7.5 )
+extents = Vector2( 4.75, 7 )
 
 [node name="Player 2" type="KinematicBody2D" groups=["players"]]
 scale = Vector2( 2, 2 )
@@ -97,11 +97,10 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )
 animation = "jump start"
-frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 0 )
+position = Vector2( -0.25, 0 )
 shape = SubResource( 10 )
 
 [node name="FSM" type="Node2D" parent="."]
@@ -118,6 +117,10 @@ script = ExtResource( 9 )
 
 [node name="dash" type="Node2D" parent="FSM"]
 script = ExtResource( 10 )
+
+[node name="Jump Margin" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 30 )
 
 [node name="Audio" type="Node2D" parent="."]
 

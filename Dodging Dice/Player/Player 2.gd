@@ -65,3 +65,6 @@ func jump():
 
 func playAnimation(animation:String):
 	$AnimatedSprite.play(animation)
+
+func jumpErrorMargin():
+	return $"Jump Margin".is_colliding()

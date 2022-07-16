@@ -19,9 +19,17 @@ func inPhysicsProcess(delta):
 		parent.playAnimation("fall")
 	else:
 		parent.playAnimation("run")
+		
+
 	
 
 func changeParentState():
+	if parent.jumpErrorMargin() and isJumping:
+		if parent.is_on_floor():
+			isJumping = false
+			return states.jump
+		else:
+			return null
 	if parent.is_on_floor() and isJumping:
 		isJumping = false
 		return states.jump
