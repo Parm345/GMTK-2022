@@ -3,6 +3,8 @@ extends KinematicBody2D
 signal jumped;
 signal landed;
 signal airborned;
+
+const DASH_SPEED = 600
 var grounded:bool = true;
 var maxSpeed = 100
 var hforce:float = 10;
@@ -13,6 +15,8 @@ var gravity:float = 15;
 var velocity:Vector2 = Vector2(0, 0);
 var MU_AIR:float = 0.001;
 var MU_H:float = 0.06;
+
+var isFacingRight = true
 
 func _ready():
 	$FSM.setState($FSM.states.idle)
@@ -27,16 +31,19 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= hforce;
 #		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
+		isFacingRight = false
 		$AnimatedSprite.flip_h = true
 	if Input.is_action_pressed("ui_right"):
 #		$AnimatedSprite.set_speed_scale(float(abs(velocity.x)/50.0));
 		velocity.x += hforce;
+		isFacingRight = true
 		$AnimatedSprite.flip_h = false
 	if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
 		velocity.x = 0
 		$AnimatedSprite.play("idle")
 	
-	velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
+	if $FSM.curState != $FSM.states.dash:
+		velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
 	
 	#gravity
 	velocity.y += gravity;
@@ -66,5 +73,3 @@ func jump():
 func playAnimation(animation:String):
 	$AnimatedSprite.play(animation)
 
-func jumpErrorMargin():
-	return $"Jump Margin".is_colliding()

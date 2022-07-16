@@ -1,23 +1,22 @@
 extends player_state
 
+var dashPointReached = false
+
 # Called when the parent enters the state
 func enter(scriptParent):
-	pass 
-
-# Called when parent leaves the state, most likely not necessary 
-func exit():
-	pass
-
-# Called every physics frame. 'delta' is the elapsed time since the previous frame. Run in FSM _physics_process.
-func inPhysicsProcess(delta):
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame. Run in FSM _process.
-func inProcess(delta):
-	pass
+	parent = scriptParent 
+	dashPointReached = false
+	if parent.isFacingRight:
+		parent.velocity.x = parent.DASH_SPEED
+	if !parent.isFacingRight:
+		parent.velocity.x = -parent.DASH_SPEED
+	parent.playAnimation("dash")
+	$"Dash Time".start()
 
 func changeParentState():
+	if dashPointReached or parent.velocity.x == 0:
+		return states.idle
 	return null
 
-func handleInput(event):
-	pass
+func _on_Dash_Time_timeout():
+	dashPointReached = true

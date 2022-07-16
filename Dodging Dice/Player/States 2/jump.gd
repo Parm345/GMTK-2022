@@ -9,19 +9,19 @@ onready var jumpForce = parent.jump_force
 var animations = ["jump start", "fall"]
 var currentAnimation = null
 var isHoldingJump = true
-var inAir = false
+var dash = false
 
 # Called when the parent enters the state
 func enter(scriptParent):
 	parent = scriptParent
 	currentAnimation = animations[0]
-	isHoldingJump = true
+	dash = false
 	parent.jump()
 
 # Called when parent leaves the state, most likely not necessary 
 func exit():
 	currentAnimation = null
-	isHoldingJump = false
+	isHoldingJump = true
 
 # Called every physics frame. 'delta' is the elapsed time since the previous frame. Run in FSM _physics_process.
 func inPhysicsProcess(delta):
@@ -37,12 +37,15 @@ func inPhysicsProcess(delta):
  
 
 func changeParentState():
+	if dash:
+		return states.dash
 	if parent.is_on_floor():
 		return states.idle
 	return null
 
 func handleInput(event):
-	pass
+	if event.is_action_pressed("dash"):
+		dash = true
 
 func _on_AnimatedSprite_animation_finished():
 	if currentAnimation == animations[1]:

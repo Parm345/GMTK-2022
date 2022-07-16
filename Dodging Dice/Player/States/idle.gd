@@ -17,8 +17,6 @@ func inPhysicsProcess(delta):
 	else:
 		parent.playAnimation("idle")
 	
-	if !parent.get_node("Jump Margin").is_colliding() and isJumping:
-		isJumping = false
 
 func changeParentState():
 #	print(parent.is_on_floor())
