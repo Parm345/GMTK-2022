@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.has_method("playerCollision"):
+		if collision.collider.has_method("playerCollision") and !is_on_floor():
 			collision.collider.playerCollision(collision.normal*-1) # -1 to return the direction player is facing
 	
 	move_and_slide(velocity, UP);
