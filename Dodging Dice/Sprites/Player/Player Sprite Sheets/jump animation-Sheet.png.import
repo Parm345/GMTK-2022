@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jump animation-Sheet.png-d43ba9e694d7e27a9eb9fc95b2091bd6.stex"
+path="res://.import/jump animation-Sheet.png-46b6d9b271f48d6ba3281752d361068f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Player/Aseprite Stuff/jump animation-Sheet.png"
-dest_files=[ "res://.import/jump animation-Sheet.png-d43ba9e694d7e27a9eb9fc95b2091bd6.stex" ]
+source_file="res://Sprites/Player/Player Sprite Sheets/jump animation-Sheet.png"
+dest_files=[ "res://.import/jump animation-Sheet.png-46b6d9b271f48d6ba3281752d361068f.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

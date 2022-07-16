@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dash animation-Sheet.png-2d95f0b594422fc7db060522ae9600cb.stex"
+path="res://.import/idle-Sheet.png-fd1313a60e886a9b9f661c83e0c76331.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Player/Aseprite Stuff/dash animation-Sheet.png"
-dest_files=[ "res://.import/dash animation-Sheet.png-2d95f0b594422fc7db060522ae9600cb.stex" ]
+source_file="res://Sprites/Player/Player Sprite Sheets/idle-Sheet.png"
+dest_files=[ "res://.import/idle-Sheet.png-fd1313a60e886a9b9f661c83e0c76331.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
