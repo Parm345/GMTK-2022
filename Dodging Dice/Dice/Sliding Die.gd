@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const WALL:int = 0;
 onready var walls:Node = get_parent();
+onready var snap:Node = $"Snap SFX";
 var rng = RandomNumberGenerator.new();
 var tile_size:float = 32;
 var value:int = 1;
@@ -32,9 +33,10 @@ func _physics_process(delta):
 			global_position += velocity*delta;
 			var collision = move_and_collide(velocity*0);
 			if collision:
-				print("COLLISION");
 				if collision.collider.is_in_group("players") && collision.get_normal()==-direction:
 					retreat();
+			if !snap.playing && are_equal_approx(global_position, rounded_multiple(global_position, 32), 1):
+				play_sound(snap, -2);
 
 func move(direction):
 	#check for walls/dies in path
@@ -53,7 +55,7 @@ func move(direction):
 
 func retreat(): #move backwards to nearest tile
 	var old_target_position:Vector2 = target_position;
-	target_position = tile_size*rounded(global_position/tile_size-direction, direction);
+	target_position = tile_size*rounded_direction(global_position/tile_size-direction, direction);
 	direction = -direction;
 	velocity = -velocity;
 	randomize_at_stop = false;
@@ -67,7 +69,7 @@ func are_equal_approx(position1, position2, tolerance):
 		return true;
 	return false;
 
-func rounded(v, direction):
+func rounded_direction(v, direction):
 	if direction.x > 0:
 		v.x = ceil(v.x);
 	elif direction.x < 0:
@@ -76,6 +78,16 @@ func rounded(v, direction):
 		v.y = ceil(v.y);
 	elif direction.y < 0:
 		v.y = floor(v.y);
+	return v;
+
+func rounded_multiple(v, n):
+	v.x = n*round(v.x/float(n));
+	v.y = n*round(v.y/float(n));
+	return v;
+
+func rounded(v):
+	v.x = round(v.x);
+	v.y = round(v.y);
 	return v;
 
 func grid_distance(v1, v2):
@@ -95,3 +107,7 @@ func change_value(new_value):
 	dice_sprites[value].visible = false;
 	value = new_value;
 	dice_sprites[value].visible = true;
+
+func play_sound(player, volume):
+	player.set_volume_db(volume);
+	player.play();

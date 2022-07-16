@@ -18,5 +18,11 @@ __meta__ = {
 [node name="Sliding Die" parent="Walls" instance=ExtResource( 3 )]
 position = Vector2( 192, 128 )
 
+[node name="Sliding Die2" parent="Walls" instance=ExtResource( 3 )]
+position = Vector2( 320, 96 )
+
+[node name="Sliding Die3" parent="Walls" instance=ExtResource( 3 )]
+position = Vector2( 288, 128 )
+
 [node name="Player 2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 148 )
