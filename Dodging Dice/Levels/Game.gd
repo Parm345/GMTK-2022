@@ -3,7 +3,7 @@ extends Node2D
 onready var PV:Node = $"/root/player_variables";
 onready var coin_counter:Node = $"GUI/Coin Counter";
 var current_level:int = 0;
-var level_count:int = 2; #excluding tutorial
+var level_count:int = 5; #excluding tutorial, including home
 var levels = [];
 const TUTORIAL:int = -1;
 
