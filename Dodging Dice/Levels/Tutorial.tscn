@@ -35,8 +35,9 @@ position = Vector2( 160, 160 )
 value = 2
 
 [node name="Sliding Die4" parent="Walls" instance=ExtResource( 4 )]
-position = Vector2( 160, 128 )
+position = Vector2( 128, 288 )
 value = 3
+willBecomeBlank = false
 
 [node name="Sliding Die5" parent="Walls" instance=ExtResource( 4 )]
 position = Vector2( 448, 128 )

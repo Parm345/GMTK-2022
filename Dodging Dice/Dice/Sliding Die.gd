@@ -19,6 +19,8 @@ var randomize_at_stop:bool = true;
 var rays = [];
 var areas = [];
 
+export var willBecomeBlank = true
+
 func _ready():
 	#get rays
 	for i in range(8):
@@ -38,6 +40,9 @@ func _ready():
 	if specified_value != 0:
 		value = specified_value;
 	dice_sprites[value].visible = true;
+	
+	if !willBecomeBlank:
+		set_modulate(Color.red)
 
 func _physics_process(delta):
 #	prints(sliding, global_position, target_position, value);
@@ -163,13 +168,17 @@ func grid_distance(v1, v2):
 
 func randomize_value():
 	rng.randomize();
-	var rand:float = rng.randf_range(0,1);
-	var new_value:int = 0;
-	if rand < 0.4:
-		new_value = 0;
+	if willBecomeBlank:
+		var rand:float = rng.randf_range(0,1);
+		var new_value:int = 0;
+		if rand < 0.4:
+			new_value = 0;
+		else:
+			new_value = ceil((rand-0.4)/0.1);
+		change_value(new_value);
 	else:
-		new_value = ceil((rand-0.4)/0.1);
-	change_value(new_value);
+		var rand = rng.randi_range(1, 6)
+		change_value(rand)
 
 func change_value(new_value):
 	dice_sprites[value].visible = false;
