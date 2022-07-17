@@ -16,16 +16,32 @@ var velocity:Vector2 = Vector2(0, 0);
 var target_position:Vector2 = Vector2(0, 0);
 var sliding:bool = false;
 var randomize_at_stop:bool = true;
+var rays = [];
+var areas = [];
 
 func _ready():
+	#get rays
+	for i in range(8):
+		var ray_short:Node = get_node("RayCast2D " + str(i));
+		rays.append(ray_short);
+	#get areas
+	for i in range(4):
+		var area:Node = get_node("Area2D " + str(i));
+		areas.append(area);
+	#get dice sprites
 	for i in range(7):
 		var sprite:Node = get_node("Dice "+str(i));
 		dice_sprites.append(sprite);
+	#initialize die value
+	var tile_position:Vector2 = walls.world_to_map(global_position);
+	var specified_value:int = walls.die_values[tile_position.x][tile_position.y];
+	if specified_value != 0:
+		value = specified_value;
 	dice_sprites[value].visible = true;
 
 func _physics_process(delta):
+#	prints(sliding, global_position, target_position, value);
 	if sliding:
-#		prints(sliding, global_position, target_position, value);
 		if are_equal_approx(global_position, target_position, 1.0):
 			global_position = target_position;
 			sliding = false; #end of movement
@@ -33,10 +49,53 @@ func _physics_process(delta):
 				randomize_value();
 		else:
 			global_position += velocity*delta;
-			var collision = move_and_collide(Vector2(0,0));
-			if collision:
-				if collision.collider.is_in_group("players") && collision.get_normal()==-direction:
-					retreat();
+			update_rays(rays);
+			var collided_with_die:bool = false;
+			var other:Node;
+			if direction==Vector2(-1,0):
+				if rays[0].is_colliding() && rays[0].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[0].get_collider();
+				elif rays[1].is_colliding() && rays[1].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[1].get_collider();
+			elif direction==Vector2(1,0):
+				if rays[2].is_colliding() && rays[2].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[2].get_collider();
+				elif rays[3].is_colliding() && rays[3].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[3].get_collider();
+			elif direction==Vector2(0,1):
+				if rays[4].is_colliding() && rays[4].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[4].get_collider();
+				elif rays[5].is_colliding() && rays[5].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[5].get_collider();
+			elif direction==Vector2(-1,0):
+				if rays[6].is_colliding() && rays[6].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[6].get_collider();
+				elif rays[7].is_colliding() && rays[7].get_collider().is_in_group("dice"):
+					collided_with_die = true;
+					other = rays[7].get_collider();
+			
+			if collided_with_die:
+				var other_distance:float = grid_distance(other.global_position, other.target_position);
+				var self_distance:float = grid_distance(global_position, target_position);
+				if self_distance >= other_distance:
+					target_position = rounded_multiple(global_position-direction, 32);
+
+#			var collision = move_and_collide(Vector2(0,0));
+#			if collision:
+#				if collision.collider.is_in_group("players") && collision.get_normal()==-direction:
+#					retreat();
+#				elif collision.collider.is_in_group("dice") && collision.get_normal()==-direction:
+#					var other_distance:float = grid_distance(collision.collider.global_position, collision.collider.target_position);
+#					var self_distance:float = grid_distance(global_position, target_position);
+#					if self_distance >= other_distance:
+#						target_position = rounded_multiple(global_position-direction, 32);
 			#snap sound
 			if !snap.playing && are_equal_approx(global_position, rounded_multiple(global_position, 32), 1):
 				play_sound(snap, -2);
@@ -120,3 +179,23 @@ func change_value(new_value):
 func play_sound(player, volume):
 	player.set_volume_db(volume);
 	player.play();
+	
+func update_rays(rays):
+	for r in rays:
+		r.force_raycast_update();
+
+func _on_Area2D_0_body_entered(body):
+	if body.is_in_group("players") && sliding && direction==Vector2(0,-1):
+		retreat();
+
+func _on_Area2D_1_body_entered(body):
+	if body.is_in_group("players") && sliding && direction==Vector2(1,0):
+		retreat();
+
+func _on_Area2D_2_body_entered(body):
+	if body.is_in_group("players") && sliding && direction==Vector2(0,1):
+		retreat();
+
+func _on_Area2D_3_body_entered(body):
+	if body.is_in_group("players") && sliding && direction==Vector2(-1,0):
+		retreat();
