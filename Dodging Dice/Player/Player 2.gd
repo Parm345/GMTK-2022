@@ -90,3 +90,13 @@ func playAnimation(animation:String):
 func _on_Button_Save_pressed():
 	PV.position_saved = true;
 	PV.saved_position = self.position + Vector2(0,-10); #add button height
+
+
+func _on_Button_Save2_pressed():
+	PV.position_saved = true;
+	PV.saved_position = self.position + Vector2(0,-10);
+
+
+func _on_Button_Save3_pressed():
+	PV.position_saved = true;
+	PV.saved_position = self.position + Vector2(0,-10);
