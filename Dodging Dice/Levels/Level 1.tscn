@@ -96,7 +96,9 @@ position = Vector2( 128, 96 )
 [node name="Coin 3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 128, 224 )
 
-[node name="Restart Button" type="Button" parent="."]
+[node name="Level GUI" type="CanvasLayer" parent="."]
+
+[node name="Restart Button" type="Button" parent="Level GUI"]
 anchor_left = 0.85
 anchor_top = 0.08
 anchor_right = 0.93
