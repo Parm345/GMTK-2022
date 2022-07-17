@@ -52,7 +52,7 @@ func _physics_process(delta):
 			update_rays(rays);
 			var collided_with_die:bool = false;
 			var other:Node;
-			if direction==Vector2(-1,0):
+			if direction==Vector2(0,-1):
 				if rays[0].is_colliding() && rays[0].get_collider().is_in_group("dice"):
 					collided_with_die = true;
 					other = rays[0].get_collider();
@@ -85,7 +85,7 @@ func _physics_process(delta):
 				var other_distance:float = grid_distance(other.global_position, other.target_position);
 				var self_distance:float = grid_distance(global_position, target_position);
 				if self_distance >= other_distance:
-					target_position = rounded_multiple(global_position-direction, 32);
+					retreat();
 
 #			var collision = move_and_collide(Vector2(0,0));
 #			if collision:
