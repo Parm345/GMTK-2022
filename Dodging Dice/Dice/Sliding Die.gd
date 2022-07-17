@@ -136,6 +136,9 @@ func retreat(): #move backwards to nearest tile
 	#skill required to catch and stop die
 	var new_value:int = grid_distance(target_position/tile_size, old_target_position/tile_size);
 	change_value(new_value);
+
+func halt(): #continue forward to nearest tile
+	target_position = global_position/tile_size
 		
 func are_equal_approx(position1, position2, tolerance):
 	if abs(position1.x-position2.x) < tolerance && abs(position1.y-position2.y) < tolerance:
