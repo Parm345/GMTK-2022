@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Sprites/Background Tiles/Die 1.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Background Tiles/Die 3.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/Background Tiles/Die 5.png" type="Texture" id=16]
+[ext_resource path="res://Audio/Ditto Fast.wav" type="AudioStream" id=17]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 11 )
@@ -206,5 +207,11 @@ texture = ExtResource( 16 )
 position = Vector2( 840, 416 )
 texture = ExtResource( 16 )
 
+[node name="Ditto Fast" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 512, 320 )
+stream = ExtResource( 17 )
+autoplay = true
+
 [connection signal="button_up" from="Home GUI/Start Button" to="." method="_on_Start_Button_button_up"]
 [connection signal="button_up" from="Home GUI/Tutorial Button" to="." method="_on_Tutorial_Button_button_up"]
+[connection signal="finished" from="Ditto Fast" to="." method="_on_Ditto_Fast_finished"]
