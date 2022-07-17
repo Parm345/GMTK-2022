@@ -74,9 +74,11 @@ position = Vector2( 64, 576 )
 
 [node name="Sliding Die18" parent="Walls" instance=ExtResource( 3 )]
 position = Vector2( 608, 384 )
+value = 6
 
 [node name="Sliding Die19" parent="Walls" instance=ExtResource( 3 )]
 position = Vector2( 672, 576 )
+value = 2
 
 [node name="Player 2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 148 )
