@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Sprites/Start 2.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Start 1.png" type="Texture" id=6]
 [ext_resource path="res://Levels/Level 0.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/Help 1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Help 2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Help 3.png" type="Texture" id=10]
 
 [node name="Level 0" type="Node2D"]
 script = ExtResource( 7 )
@@ -70,4 +73,20 @@ texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 5 )
 
+[node name="Tutorial Button" type="TextureButton" parent="Home GUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_top = -192.0
+margin_right = -128.0
+margin_bottom = -160.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 9 )
+
 [connection signal="button_up" from="Home GUI/Start Button" to="." method="_on_Start_Button_button_up"]
+[connection signal="button_up" from="Home GUI/Tutorial Button" to="." method="_on_Tutorial_Button_button_up"]

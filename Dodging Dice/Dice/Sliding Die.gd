@@ -87,10 +87,7 @@ func _physics_process(delta):
 					other = rays[7].get_collider();
 			
 			if collided_with_die:
-				var other_distance:float = grid_distance(other.global_position, other.target_position);
-				var self_distance:float = grid_distance(global_position, target_position);
-				if self_distance >= other_distance:
-					retreat();
+				retreat();
 
 #			var collision = move_and_collide(Vector2(0,0));
 #			if collision:
@@ -138,7 +135,7 @@ func retreat(): #move backwards to nearest tile
 	change_value(new_value);
 
 func halt(): #continue forward to nearest tile
-	target_position = global_position/tile_size
+	target_position = (global_position-velocity/30.0)/tile_size
 		
 func are_equal_approx(position1, position2, tolerance):
 	if abs(position1.x-position2.x) < tolerance && abs(position1.y-position2.y) < tolerance:

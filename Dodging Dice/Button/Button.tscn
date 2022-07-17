@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sprites/Laser Base.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Button Head 1.png" type="Texture" id=2]
 [ext_resource path="res://Button/Button.gd" type="Script" id=3]
+[ext_resource path="res://Button/Button Head.gd" type="Script" id=4]
 
 [node name="Button" type="StaticBody2D"]
 script = ExtResource( 3 )
 
-[node name="Button Head" type="StaticBody2D" parent="."]
+[node name="Button Head" type="StaticBody2D" parent="." groups=["button_heads"]]
 position = Vector2( 0, -5 )
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Button Head"]
 texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Button Head"]
-polygon = PoolVector2Array( -10, 5, 10, 5, 11, 6, 11, 16, -11, 16, -11, 6 )
+polygon = PoolVector2Array( -11, 11, -11, 6, -10, 5, 10, 5, 11, 6, 11, 11 )
 
 [node name="Button Base" type="Sprite" parent="."]
 texture = ExtResource( 1 )
