@@ -49,7 +49,7 @@ value = 2
 willBecomeBlank = false
 
 [node name="Player 2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 640, 192 )
+position = Vector2( 154, 592 )
 
 [node name="Coins" type="Node2D" parent="."]
 
