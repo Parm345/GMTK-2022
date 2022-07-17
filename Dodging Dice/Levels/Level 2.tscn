@@ -99,7 +99,7 @@ position = Vector2( 160, 448 )
 value = 2
 
 [node name="Player 2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 776, 336 )
+position = Vector2( 80, 176 )
 
 [node name="Button" parent="." instance=ExtResource( 5 )]
 position = Vector2( 928, 608 )
