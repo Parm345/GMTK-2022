@@ -33,28 +33,67 @@ __meta__ = {
 }
 
 [node name="Coin 1" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 176, 560 )
+position = Vector2( 176, 592 )
 
 [node name="Coin 3" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 272, 544 )
+position = Vector2( 208, 560 )
 
 [node name="Coin 4" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 304, 544 )
+position = Vector2( 304, 592 )
 
 [node name="Coin 5" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 432, 528 )
+position = Vector2( 336, 560 )
 
 [node name="Coin 6" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 400, 528 )
+position = Vector2( 320, 576 )
 
 [node name="Coin 7" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 528, 544 )
+position = Vector2( 432, 592 )
 
 [node name="Coin 8" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 560, 544 )
+position = Vector2( 432, 560 )
+
+[node name="Coin 9" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 464, 560 )
+
+[node name="Coin 10" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 464, 592 )
+
+[node name="Coin 11" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 592, 560 )
+
+[node name="Coin 16" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 688, 560 )
+
+[node name="Coin 17" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 720, 560 )
+
+[node name="Coin 18" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 688, 576 )
+
+[node name="Coin 19" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 720, 576 )
+
+[node name="Coin 20" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 688, 592 )
+
+[node name="Coin 21" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 720, 592 )
+
+[node name="Coin 12" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 576, 576 )
+
+[node name="Coin 13" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 560, 560 )
+
+[node name="Coin 14" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 560, 592 )
+
+[node name="Coin 15" parent="Coins" instance=ExtResource( 2 )]
+position = Vector2( 592, 592 )
 
 [node name="Coin 2" parent="Coins" instance=ExtResource( 2 )]
-position = Vector2( 144, 560 )
+position = Vector2( 64, 576 )
 
 [node name="Home GUI" type="CanvasLayer" parent="."]
 
@@ -63,10 +102,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -256.0
-margin_top = -128.0
-margin_right = -128.0
-margin_bottom = -96.0
+margin_left = -224.0
+margin_top = -96.0
+margin_right = -96.0
+margin_bottom = -64.0
 focus_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 6 )
@@ -78,10 +117,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -256.0
-margin_top = -192.0
-margin_right = -128.0
-margin_bottom = -160.0
+margin_left = -224.0
+margin_top = -160.0
+margin_right = -96.0
+margin_bottom = -128.0
 focus_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 8 )
