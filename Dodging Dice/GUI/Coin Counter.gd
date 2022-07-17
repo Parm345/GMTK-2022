@@ -29,7 +29,7 @@ func scale(n):
 func set_coin_count(n, pop):
 	var d:int = digit_count(n);
 	#move and extend coin bar
-	coin_bar.rect_position.x = coin_bar_x0 + d*digit_width;
+	coin_bar.rect_position.x = coin_bar_x0 + (d-1)*digit_width;
 	var exposed_width:float = coin_bar.rect_position.x + offset_width;
 	coin_bar.set_value(exposed_width);
 	
