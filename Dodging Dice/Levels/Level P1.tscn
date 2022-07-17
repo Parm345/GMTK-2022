@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Walls.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Background Tiles/Background.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=3]
+[ext_resource path="res://Dice/Sliding Die.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Button/Button.tscn" type="PackedScene" id=7]
+
+[node name="Level P1" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -184, 104 )
+z_index = -10
+texture = ExtResource( 2 )
+offset = Vector2( 696, 216 )
+
+[node name="Walls" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 65536, 0, 0, 65567, 0, 0, 131072, 0, 0, 131103, 0, 0, 196608, 0, 0, 196639, 0, 0, 262144, 0, 0, 262175, 0, 0, 327680, 0, 0, 327689, 0, 0, 327698, 0, 0, 327711, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393225, 0, 0, 393234, 0, 0, 393247, 0, 0, 458752, 0, 0, 458760, 0, 0, 458761, 0, 0, 458770, 0, 0, 458771, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458783, 0, 0, 524288, 0, 0, 524297, 0, 0, 524306, 0, 0, 524318, 0, 0, 524319, 0, 0, 589824, 0, 0, 589833, 0, 0, 589842, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589855, 0, 0, 655360, 0, 0, 655369, 0, 0, 655378, 0, 0, 655391, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720905, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720927, 0, 0, 786432, 0, 0, 786440, 0, 0, 786441, 0, 0, 786450, 0, 0, 786463, 0, 0, 851968, 0, 0, 851977, 0, 0, 851986, 0, 0, 851997, 0, 0, 851998, 0, 0, 851999, 0, 0, 917504, 0, 0, 917513, 0, 0, 917522, 0, 0, 917535, 0, 0, 983040, 0, 0, 983049, 0, 0, 983058, 0, 0, 983071, 0, 0, 1048576, 0, 0, 1048585, 0, 0, 1048594, 0, 0, 1048607, 0, 0, 1114112, 0, 0, 1114121, 0, 0, 1114130, 0, 0, 1114143, 0, 0, 1179648, 0, 0, 1179659, 0, 0, 1179666, 0, 0, 1179679, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sliding Die" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 224, 544 )
+value = 4
+willBecomeBlank = false
+
+[node name="Sliding Die2" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 96, 480 )
+value = 4
+
+[node name="Sliding Die3" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 96, 288 )
+value = 3
+
+[node name="Sliding Die4" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 928, 384 )
+value = 5
+
+[node name="Sliding Die5" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 928, 256 )
+value = 2
+willBecomeBlank = false
+
+[node name="Player 2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 154, 592 )
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin 1" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 80, 168 )
+
+[node name="Coin 2" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 384, 88 )
+
+[node name="Coin 3" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 576, 88 )
+
+[node name="Coin 4" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 968, 584 )
+
+[node name="Coin 5" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 968, 536 )
+
+[node name="Coin 6" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 632, 288 )
+
+[node name="Coin 8" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 672, 288 )
+
+[node name="Coin 9" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 672, 320 )
+
+[node name="Coin 11" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 880, 336 )
+
+[node name="Coin 12" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 848, 336 )
+
+[node name="Coin 13" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 816, 336 )
+
+[node name="Coin 10" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 632, 320 )
+
+[node name="Coin 7" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 928, 584 )
+
+[node name="Coin 14" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 928, 536 )
+
+[node name="Button" parent="." instance=ExtResource( 7 )]
+position = Vector2( 640, 608 )
