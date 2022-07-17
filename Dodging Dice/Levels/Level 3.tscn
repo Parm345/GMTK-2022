@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Walls.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Background Tiles/Background.png" type="Texture" id=2]
@@ -7,8 +7,16 @@
 [ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Button/Button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Arrows/Arrow Left.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Arrows/Arrow 4D.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Arrows/Arrow 5.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Arrows/Arrow 5Z.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Arrows/Arrow 5D.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Arrows/Arrow 4R.png" type="Texture" id=13]
+[ext_resource path="res://Levels/Level 3.gd" type="Script" id=14]
 
 [node name="Level P3" type="Node2D"]
+script = ExtResource( 14 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -192, 104 )
@@ -95,3 +103,34 @@ position = Vector2( 768, 592 )
 
 [node name="Coin 4" parent="Coins" instance=ExtResource( 7 )]
 position = Vector2( 256, 592 )
+
+[node name="Level GUI" type="CanvasLayer" parent="."]
+
+[node name="Restart Button" type="TextureButton" parent="Level GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -32.0
+margin_right = 32.0
+margin_bottom = 64.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 12 )
+
+[node name="Home Button" type="TextureButton" parent="Level GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.0
+margin_bottom = 64.0
+rect_scale = Vector2( 0.5, 0.5 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 9 )
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="button_up" from="Level GUI/Restart Button" to="." method="_on_Restart_Button_button_up"]
+[connection signal="button_up" from="Level GUI/Home Button" to="." method="_on_Home_Button_button_up"]

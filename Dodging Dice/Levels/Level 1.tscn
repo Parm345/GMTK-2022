@@ -1,10 +1,10 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=1]
-[ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Dice/Sliding Die.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Walls.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Walls.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Background Tiles/Background.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=3]
+[ext_resource path="res://Dice/Sliding Die.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/Arrows/Arrow 5D.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Arrows/Arrow 5Z.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Arrows/Arrow 5.png" type="Texture" id=8]
@@ -12,206 +12,99 @@
 [ext_resource path="res://Sprites/Arrows/Arrow 4D.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Arrows/Arrow 4R.png" type="Texture" id=11]
 [ext_resource path="res://Levels/Level 1.gd" type="Script" id=12]
-[ext_resource path="res://Button/Button.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Button/Button Save.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Button/Button.tscn" type="PackedScene" id=14]
 
-[node name="Level 1" type="Node2D"]
+[node name="Level P1" type="Node2D"]
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 512, 320 )
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( -184, 104 )
+z_index = -10
+texture = ExtResource( 2 )
+offset = Vector2( 696, 216 )
 
 [node name="Walls" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 65536, 0, 0, 65544, 0, 0, 65545, 0, 0, 65554, 0, 0, 65567, 0, 0, 131072, 0, 0, 131078, 0, 0, 131080, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 131090, 0, 0, 131096, 0, 0, 131100, 0, 0, 131103, 0, 0, 196608, 0, 0, 196613, 0, 0, 196616, 0, 0, 196624, 0, 0, 196626, 0, 0, 196631, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 196636, 0, 0, 196639, 0, 0, 262144, 0, 0, 262152, 0, 0, 262154, 0, 0, 262160, 0, 0, 262162, 0, 0, 262167, 0, 0, 262175, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327688, 0, 0, 327690, 0, 0, 327696, 0, 0, 327703, 0, 0, 327706, 0, 0, 327709, 0, 0, 327710, 0, 0, 327711, 0, 0, 393216, 0, 0, 393226, 0, 0, 393227, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393239, 0, 0, 393242, 0, 0, 393247, 0, 0, 458752, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458771, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458781, 0, 0, 458783, 0, 0, 524288, 0, 0, 524290, 0, 0, 524295, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524316, 0, 0, 524319, 0, 0, 589824, 0, 0, 589826, 0, 0, 589829, 0, 0, 589833, 0, 0, 589835, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589852, 0, 0, 589855, 0, 0, 655360, 0, 0, 655365, 0, 0, 655367, 0, 0, 655369, 0, 0, 655371, 0, 0, 655373, 0, 0, 655380, 0, 0, 655388, 0, 0, 655389, 0, 0, 655391, 0, 0, 720896, 0, 0, 720898, 0, 0, 720901, 0, 0, 720905, 0, 0, 720909, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720916, 0, 0, 720924, 0, 0, 720927, 0, 0, 786432, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786443, 0, 0, 786445, 0, 0, 786446, 0, 0, 786450, 0, 0, 786452, 0, 0, 786460, 0, 0, 786463, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851977, 0, 0, 851979, 0, 0, 851981, 0, 0, 851982, 0, 0, 851984, 0, 0, 851986, 0, 0, 851988, 0, 0, 851996, 0, 0, 851998, 0, 0, 851999, 0, 0, 917504, 0, 0, 917508, 0, 0, 917510, 0, 0, 917511, 0, 0, 917513, 0, 0, 917517, 0, 0, 917520, 0, 0, 917524, 0, 0, 917532, 0, 0, 917535, 0, 0, 983040, 0, 0, 983042, 0, 0, 983044, 0, 0, 983046, 0, 0, 983049, 0, 0, 983050, 0, 0, 983051, 0, 0, 983052, 0, 0, 983053, 0, 0, 983056, 0, 0, 983058, 0, 0, 983060, 0, 0, 983068, 0, 0, 983071, 0, 0, 1048576, 0, 0, 1048578, 0, 0, 1048582, 0, 0, 1048596, 0, 0, 1048604, 0, 0, 1048605, 0, 0, 1048607, 0, 0, 1114112, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114143, 0, 0, 1179648, 0, 0, 1179679, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0 )
-script = ExtResource( 5 )
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 65536, 0, 0, 65567, 0, 0, 131072, 0, 0, 131103, 0, 0, 196608, 0, 0, 196639, 0, 0, 262144, 0, 0, 262175, 0, 0, 327680, 0, 0, 327689, 0, 0, 327698, 0, 0, 327711, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393225, 0, 0, 393234, 0, 0, 393247, 0, 0, 458752, 0, 0, 458760, 0, 0, 458761, 0, 0, 458770, 0, 0, 458771, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458783, 0, 0, 524288, 0, 0, 524297, 0, 0, 524306, 0, 0, 524318, 0, 0, 524319, 0, 0, 589824, 0, 0, 589833, 0, 0, 589842, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589855, 0, 0, 655360, 0, 0, 655369, 0, 0, 655378, 0, 0, 655391, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720905, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720927, 0, 0, 786432, 0, 0, 786440, 0, 0, 786441, 0, 0, 786450, 0, 0, 786463, 0, 0, 851968, 0, 0, 851977, 0, 0, 851986, 0, 0, 851997, 0, 0, 851998, 0, 0, 851999, 0, 0, 917504, 0, 0, 917513, 0, 0, 917522, 0, 0, 917535, 0, 0, 983040, 0, 0, 983049, 0, 0, 983058, 0, 0, 983071, 0, 0, 1048576, 0, 0, 1048585, 0, 0, 1048594, 0, 0, 1048607, 0, 0, 1114112, 0, 0, 1114121, 0, 0, 1114130, 0, 0, 1114143, 0, 0, 1179648, 0, 0, 1179659, 0, 0, 1179666, 0, 0, 1179679, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245188, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245204, 0, 0, 1245205, 0, 0, 1245206, 0, 0, 1245207, 0, 0, 1245208, 0, 0, 1245209, 0, 0, 1245210, 0, 0, 1245211, 0, 0, 1245212, 0, 0, 1245213, 0, 0, 1245214, 0, 0, 1245215, 0, 0 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sliding Die" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 192, 128 )
+[node name="Sliding Die" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 224, 544 )
+value = 4
+willBecomeBlank = false
 
-[node name="Sliding Die2" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 320, 96 )
-value = 5
-
-[node name="Sliding Die20" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 352, 128 )
-
-[node name="Sliding Die21" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 384, 128 )
-
-[node name="Sliding Die22" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 416, 128 )
-
-[node name="Sliding Die23" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 448, 128 )
-
-[node name="Sliding Die25" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 416, 192 )
-
-[node name="Sliding Die26" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 384, 192 )
-
-[node name="Sliding Die12" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 96, 96 )
-
-[node name="Sliding Die13" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 64, 64 )
-
-[node name="Sliding Die15" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 128, 128 )
-value = 2
-
-[node name="Sliding Die14" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 96, 64 )
-value = 2
-
-[node name="Sliding Die5" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 128, 32 )
-
-[node name="Sliding Die6" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 64, 320 )
-
-[node name="Sliding Die17" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 352, 352 )
-
-[node name="Sliding Die16" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 224, 288 )
-
-[node name="Sliding Die7" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 800, 512 )
-value = 3
-
-[node name="Sliding Die8" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 512, 512 )
-
-[node name="Sliding Die9" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 576, 448 )
-
-[node name="Sliding Die10" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 768, 512 )
+[node name="Sliding Die2" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 96, 480 )
 value = 4
 
-[node name="Sliding Die11" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 832, 512 )
-value = 2
-
-[node name="Sliding Die18" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 864, 512 )
-
-[node name="Sliding Die30" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 768, 384 )
-
-[node name="Sliding Die39" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 704, 416 )
-
-[node name="Sliding Die40" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 672, 416 )
-
-[node name="Sliding Die41" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 672, 512 )
-
-[node name="Sliding Die42" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 704, 512 )
-
-[node name="Sliding Die36" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 800, 384 )
-value = 2
-
-[node name="Sliding Die37" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 832, 384 )
+[node name="Sliding Die3" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 96, 288 )
 value = 3
 
-[node name="Sliding Die38" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 864, 384 )
-value = 4
-
-[node name="Sliding Die24" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 608, 256 )
+[node name="Sliding Die4" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 928, 384 )
 value = 5
 
-[node name="Sliding Die33" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 640, 256 )
-value = 6
-
-[node name="Sliding Die27" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 640, 128 )
+[node name="Sliding Die5" parent="Walls" instance=ExtResource( 4 )]
+position = Vector2( 928, 256 )
 value = 2
+willBecomeBlank = false
 
-[node name="Sliding Die32" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 640, 192 )
-value = 2
-
-[node name="Sliding Die28" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 640, 64 )
-value = 2
-
-[node name="Sliding Die29" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 672, 96 )
-
-[node name="Sliding Die34" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 768, 32 )
-
-[node name="Sliding Die35" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 896, 32 )
-
-[node name="Sliding Die31" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 672, 160 )
-
-[node name="Sliding Die19" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 480, 480 )
-value = 3
+[node name="Player 2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 154, 592 )
 
 [node name="Coins" type="Node2D" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Coin 1" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 144, 80 )
+[node name="Coin 1" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 80, 168 )
 
-[node name="Coin 3" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 144, 208 )
+[node name="Coin 2" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 384, 88 )
 
-[node name="Coin 5" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 176, 208 )
+[node name="Coin 3" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 576, 88 )
 
-[node name="Coin 6" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 208, 208 )
+[node name="Coin 4" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 968, 584 )
 
-[node name="Coin 8" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 80, 592 )
+[node name="Coin 5" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 968, 536 )
 
-[node name="Coin 9" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 112, 592 )
+[node name="Coin 6" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 632, 288 )
 
-[node name="Coin 10" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 144, 592 )
+[node name="Coin 8" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 672, 288 )
 
-[node name="Coin 11" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 176, 592 )
+[node name="Coin 9" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 672, 320 )
 
-[node name="Coin 12" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 208, 592 )
+[node name="Coin 11" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 880, 336 )
 
-[node name="Coin 7" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 80, 208 )
+[node name="Coin 12" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 848, 336 )
 
-[node name="Coin 4" parent="Coins" instance=ExtResource( 4 )]
-position = Vector2( 112, 208 )
+[node name="Coin 13" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 816, 336 )
 
-[node name="Player 2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 64, 144 )
+[node name="Coin 10" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 632, 320 )
+
+[node name="Coin 7" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 928, 584 )
+
+[node name="Coin 14" parent="Coins" instance=ExtResource( 13 )]
+position = Vector2( 928, 536 )
+
+[node name="Button" parent="." instance=ExtResource( 14 )]
+position = Vector2( 640, 608 )
 
 [node name="Level GUI" type="CanvasLayer" parent="."]
 
@@ -240,21 +133,6 @@ texture_normal = ExtResource( 11 )
 texture_pressed = ExtResource( 9 )
 texture_hover = ExtResource( 10 )
 
-[node name="Button" parent="." instance=ExtResource( 13 )]
-position = Vector2( 944, 160 )
-
-[node name="Button Save" parent="." instance=ExtResource( 14 )]
-position = Vector2( 224, 256 )
-
-[node name="Button Save2" parent="." instance=ExtResource( 14 )]
-position = Vector2( 512, 352 )
-
-[node name="Button Save3" parent="." instance=ExtResource( 14 )]
-position = Vector2( 224, 544 )
-
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="button_up" from="Level GUI/Restart Button" to="." method="_on_Restart_Button_button_up"]
 [connection signal="button_up" from="Level GUI/Home Button" to="." method="_on_Home_Button_button_up"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Button Save" to="Player 2" method="_on_Button_Save_pressed"]
-[connection signal="pressed" from="Button Save2" to="Player 2" method="_on_Button_Save2_pressed"]
-[connection signal="pressed" from="Button Save3" to="Player 2" method="_on_Button_Save3_pressed"]
