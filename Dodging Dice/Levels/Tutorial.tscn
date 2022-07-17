@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprites/Background Tiles/Background.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Sprites/Arrows/Arrow 5.png" type="Texture" id=13]
 [ext_resource path="res://Levels/Tutorial.gd" type="Script" id=14]
 [ext_resource path="res://Button/Button.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Button/Button Save.tscn" type="PackedScene" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -228,6 +229,10 @@ texture_hover = ExtResource( 10 )
 [node name="Button" parent="." instance=ExtResource( 15 )]
 position = Vector2( 928, 608 )
 
+[node name="Button Save" parent="." instance=ExtResource( 16 )]
+position = Vector2( 800, 608 )
+
 [connection signal="button_up" from="Level GUI/Restart Button" to="." method="_on_Restart_Button_button_up"]
 [connection signal="button_up" from="Level GUI/Home Button" to="." method="_on_Home_Button_button_up"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button Save" to="Player 2" method="_on_Button_Save_pressed"]
