@@ -89,7 +89,7 @@ animations = [ {
 "frames": [ SubResource( 21 ), SubResource( 24 ) ],
 "loop": true,
 "name": "fall",
-"speed": 11.0
+"speed": 8.0
 }, {
 "frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 17 ), SubResource( 17 ), SubResource( 18 ), SubResource( 18 ), SubResource( 18 ) ],
 "loop": true,
