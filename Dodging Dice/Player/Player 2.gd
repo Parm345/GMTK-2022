@@ -8,6 +8,8 @@ const DASH_SPEED = 1000
 const MAX_GRAV = 1500
 const DASH_LIMIT = 2
 
+onready var PV:Node = $"/root/player_variables";
+
 var grounded:bool = true;
 var maxSpeed = 100
 var hforce:float = 50;
@@ -24,6 +26,9 @@ var dashCount = 0
 
 func _ready():
 	$FSM.setState($FSM.states.idle)
+	if PV.position_saved:
+		self.position = PV.saved_position;
+#		print(PV.saved_position);
 
 #func _input(event):
 #	if event.is_action_pressed("jump") and is_on_floor():
@@ -81,3 +86,7 @@ func jump():
 func playAnimation(animation:String):
 	$AnimatedSprite.play(animation)
 
+
+func _on_Button_Save_pressed():
+	PV.position_saved = true;
+	PV.saved_position = self.position + Vector2(0,-10); #add button height
