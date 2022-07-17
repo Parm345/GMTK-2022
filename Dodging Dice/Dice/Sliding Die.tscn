@@ -61,3 +61,60 @@ texture = ExtResource( 3 )
 visible = false
 position = Vector2( 16, 16 )
 texture = ExtResource( 6 )
+
+[node name="RayCast2D 0" type="RayCast2D" parent="."]
+position = Vector2( 6, 0 )
+cast_to = Vector2( 0, -16 )
+
+[node name="RayCast2D 1" type="RayCast2D" parent="."]
+position = Vector2( 26, 0 )
+cast_to = Vector2( 0, -16 )
+
+[node name="RayCast2D 2" type="RayCast2D" parent="."]
+position = Vector2( 32, 6 )
+cast_to = Vector2( 16, 0 )
+
+[node name="RayCast2D 3" type="RayCast2D" parent="."]
+position = Vector2( 32, 26 )
+cast_to = Vector2( 16, 0 )
+
+[node name="RayCast2D 4" type="RayCast2D" parent="."]
+position = Vector2( 26, 32 )
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D 5" type="RayCast2D" parent="."]
+position = Vector2( 6, 32 )
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D 6" type="RayCast2D" parent="."]
+position = Vector2( 0, 26 )
+cast_to = Vector2( -16, 0 )
+
+[node name="RayCast2D 7" type="RayCast2D" parent="."]
+position = Vector2( 0, 6 )
+cast_to = Vector2( -16, 0 )
+
+[node name="Area2D 0" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D 0"]
+polygon = PoolVector2Array( 0, 0, 2, -1, 30, -1, 32, 0 )
+
+[node name="Area2D 1" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D 1"]
+polygon = PoolVector2Array( 32, 0, 33, 2, 33, 30, 32, 32 )
+
+[node name="Area2D 2" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D 2"]
+polygon = PoolVector2Array( 32, 32, 30, 33, 2, 33, 0, 32 )
+
+[node name="Area2D 3" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D 3"]
+polygon = PoolVector2Array( -1, 2, 0, 0, 0, 32, -1, 30 )
+
+[connection signal="body_entered" from="Area2D 0" to="." method="_on_Area2D_0_body_entered"]
+[connection signal="body_entered" from="Area2D 1" to="." method="_on_Area2D_1_body_entered"]
+[connection signal="body_entered" from="Area2D 2" to="." method="_on_Area2D_2_body_entered"]
+[connection signal="body_entered" from="Area2D 3" to="." method="_on_Area2D_3_body_entered"]
