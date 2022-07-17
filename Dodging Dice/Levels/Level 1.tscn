@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Die Faces.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Dice/Sliding Die.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Walls.gd" type="Script" id=5]
+[ext_resource path="res://GUI/KosugiMaru-Regular.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 6 )
 
 [node name="Level 1" type="Node2D"]
 
@@ -91,3 +95,13 @@ position = Vector2( 128, 96 )
 
 [node name="Coin 3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 128, 224 )
+
+[node name="Restart Button" type="Button" parent="."]
+anchor_left = 0.85
+anchor_top = 0.08
+anchor_right = 0.93
+anchor_bottom = 0.12
+focus_mode = 0
+custom_fonts/font = SubResource( 1 )
+enabled_focus_mode = 0
+text = "RESTART"
