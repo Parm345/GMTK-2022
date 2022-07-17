@@ -60,7 +60,6 @@ func _physics_process(delta):
 			collision.collider.move(-collision.get_normal());
 		elif collision.collider.is_in_group("button_heads") && collision.get_normal()==Vector2(0,-1):
 			var button_head:Node = collision.collider;
-			print(button_head);
 			button_head.sinking = true;
 	
 	#landed/airborned signal

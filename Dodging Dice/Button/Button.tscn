@@ -10,6 +10,7 @@ script = ExtResource( 3 )
 
 [node name="Button Head" type="StaticBody2D" parent="." groups=["button_heads"]]
 position = Vector2( 16, -15 )
+z_index = -1
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Button Head"]
@@ -27,3 +28,5 @@ visible = false
 position = Vector2( 16, -10 )
 polygon = PoolVector2Array( -14, 10, 14, 10, 14, 11, 15, 11, 15, 12, 16, 12, 16, 16, -16, 16, -16, 12, -15, 12, -15, 11, -14, 11 )
 disabled = true
+
+[connection signal="pressed" from="Button Head" to="." method="_on_Button_Head_pressed"]
