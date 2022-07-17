@@ -34,11 +34,11 @@ func _ready():
 	for i in range(7):
 		var sprite:Node = get_node("Dice "+str(i));
 		dice_sprites.append(sprite);
-	#initialize die value
-	var tile_position:Vector2 = walls.world_to_map(global_position);
-	var specified_value:int = walls.die_values[tile_position.x][tile_position.y];
-	if specified_value != 0:
-		value = specified_value;
+	#initialize die value (See Script Variables)
+#	var tile_position:Vector2 = walls.world_to_map(global_position);
+#	var specified_value:int = walls.die_values[tile_position.x][tile_position.y];
+#	if specified_value != 0:
+#		value = specified_value;
 	dice_sprites[value].visible = true;
 	
 	if !willBecomeBlank:
