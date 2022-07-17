@@ -4,14 +4,12 @@
 [ext_resource path="res://Player/Player 2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Dice/Sliding Die.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Coin 1.tscn" type="PackedScene" id=4]
-
 [ext_resource path="res://Scenes/Walls.gd" type="Script" id=5]
 
 [node name="Level 1" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 512, 320 )
-texture = ExtResource( 5 )
 
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

@@ -4,7 +4,7 @@ signal jumped;
 signal landed;
 signal airborned;
 
-const DASH_SPEED = 600
+const DASH_SPEED = 1000
 const MAX_GRAV = 1500
 var grounded:bool = true;
 var maxSpeed = 100
@@ -45,9 +45,8 @@ func _physics_process(delta):
 	
 	if $FSM.curState != $FSM.states.dash:
 		velocity.x = clamp(velocity.x, -maxSpeed, maxSpeed)
-	
-	#gravity
-	velocity.y += gravity;
+		#gravity
+		velocity.y += gravity
 	
 	velocity.y = clamp(velocity.y, -jump_force, MAX_GRAV)
 	#move
