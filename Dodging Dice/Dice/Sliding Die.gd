@@ -16,6 +16,7 @@ var velocity:Vector2 = Vector2(0, 0);
 var target_position:Vector2 = Vector2(0, 0);
 var sliding:bool = false;
 var randomize_at_stop:bool = true;
+var detected_die:bool = false;
 var rays = [];
 var areas = [];
 
@@ -55,39 +56,39 @@ func _physics_process(delta):
 		else:
 			global_position += velocity*delta;
 			update_rays(rays);
-			var collided_with_die:bool = false;
-			var other:Node;
-			if direction==Vector2(0,-1):
-				if rays[0].is_colliding() && rays[0].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[0].get_collider();
-				elif rays[1].is_colliding() && rays[1].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[1].get_collider();
-			elif direction==Vector2(1,0):
-				if rays[2].is_colliding() && rays[2].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[2].get_collider();
-				elif rays[3].is_colliding() && rays[3].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[3].get_collider();
-			elif direction==Vector2(0,1):
-				if rays[4].is_colliding() && rays[4].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[4].get_collider();
-				elif rays[5].is_colliding() && rays[5].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[5].get_collider();
-			elif direction==Vector2(-1,0):
-				if rays[6].is_colliding() && rays[6].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[6].get_collider();
-				elif rays[7].is_colliding() && rays[7].get_collider().is_in_group("dice"):
-					collided_with_die = true;
-					other = rays[7].get_collider();
-			
-			if collided_with_die:
-				retreat();
+			if !detected_die: #detect for die
+				var other:Node;
+				if direction==Vector2(0,-1):
+					if rays[0].is_colliding() && rays[0].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[0].get_collider();
+					elif rays[1].is_colliding() && rays[1].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[1].get_collider();
+				elif direction==Vector2(1,0):
+					if rays[2].is_colliding() && rays[2].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[2].get_collider();
+					elif rays[3].is_colliding() && rays[3].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[3].get_collider();
+				elif direction==Vector2(0,1):
+					if rays[4].is_colliding() && rays[4].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[4].get_collider();
+					elif rays[5].is_colliding() && rays[5].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[5].get_collider();
+				elif direction==Vector2(-1,0):
+					if rays[6].is_colliding() && rays[6].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[6].get_collider();
+					elif rays[7].is_colliding() && rays[7].get_collider().is_in_group("dice"):
+						detected_die = true;
+						other = rays[7].get_collider();
+				
+				if detected_die:
+					halt();
 
 #			var collision = move_and_collide(Vector2(0,0));
 #			if collision:
@@ -121,6 +122,7 @@ func move(direction):
 	target_position = rounded_multiple(global_position,32) + direction*value*tile_size;
 	velocity = speed*direction;
 	randomize_at_stop = true;
+	detected_die = false;
 	sliding = true;
 
 func retreat(): #move backwards to nearest tile
@@ -134,8 +136,14 @@ func retreat(): #move backwards to nearest tile
 	var new_value:int = grid_distance(target_position/tile_size, old_target_position/tile_size);
 	change_value(new_value);
 
-func halt(): #continue forward to nearest tile
-	target_position = (global_position-velocity/30.0)/tile_size
+func halt(): #either retreat or continue depending on grid position
+	var old_target_position:Vector2 = target_position;
+	target_position = tile_size*rounded_direction((global_position-tile_size*0.5*direction+direction)/tile_size, direction);
+	direction = normalized(target_position-global_position);
+	velocity = speed*direction;
+	randomize_at_stop = false;
+	var new_value:int = grid_distance(target_position/tile_size, old_target_position/tile_size);
+	change_value(new_value);
 		
 func are_equal_approx(position1, position2, tolerance):
 	if abs(position1.x-position2.x) < tolerance && abs(position1.y-position2.y) < tolerance:
@@ -193,18 +201,26 @@ func update_rays(rays):
 	for r in rays:
 		r.force_raycast_update();
 
+func normalized(v):
+	if v.x != 0:
+		return v/abs(v.x);
+	elif v.y != 0:
+		return v/abs(v.y);
+	else:
+		return v;
+
 func _on_Area2D_0_body_entered(body):
-	if body.is_in_group("players") && sliding && direction==Vector2(0,-1):
+	if body.is_in_group("solids") && sliding && direction==Vector2(0,-1):
 		retreat();
 
 func _on_Area2D_1_body_entered(body):
-	if body.is_in_group("players") && sliding && direction==Vector2(1,0):
+	if body.is_in_group("solids") && sliding && direction==Vector2(1,0):
 		retreat();
 
 func _on_Area2D_2_body_entered(body):
-	if body.is_in_group("players") && sliding && direction==Vector2(0,1):
+	if body.is_in_group("solids") && sliding && direction==Vector2(0,1):
 		retreat();
 
 func _on_Area2D_3_body_entered(body):
-	if body.is_in_group("players") && sliding && direction==Vector2(-1,0):
+	if body.is_in_group("solids") && sliding && direction==Vector2(-1,0):
 		retreat();

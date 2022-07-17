@@ -9,3 +9,7 @@ func _on_Restart_Button_button_up():
 func _on_Home_Button_button_up():
 	game.add_level(0);
 	queue_free();
+
+func _on_Button_pressed():
+	game.add_level(0);
+	queue_free();
