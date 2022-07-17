@@ -5,6 +5,7 @@ signal landed;
 signal airborned;
 
 const DASH_SPEED = 600
+const MAX_GRAV = 1500
 var grounded:bool = true;
 var maxSpeed = 100
 var hforce:float = 10;
@@ -47,7 +48,8 @@ func _physics_process(delta):
 	
 	#gravity
 	velocity.y += gravity;
-
+	
+	velocity.y = clamp(velocity.y, -jump_force, MAX_GRAV)
 	#move
 	velocity = move_and_slide(velocity, Vector2.UP);
 	for i in get_slide_count():
