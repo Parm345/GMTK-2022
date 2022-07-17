@@ -6,7 +6,7 @@ var dashPointReached = false
 func enter(scriptParent):
 	parent = scriptParent 
 	dashPointReached = false
-	
+	parent.dashCount += 1
 	if parent.isFacingRight:
 		parent.velocity.x = parent.DASH_SPEED
 	if !parent.isFacingRight:

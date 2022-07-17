@@ -26,7 +26,7 @@ func changeParentState():
 		return states.jump
 	if stoppedMoving:
 		return states.idle
-	if isDashing:
+	if isDashing and parent.dashCount < parent.DASH_LIMIT:
 		isDashing = false
 		return states.dash
 	return null

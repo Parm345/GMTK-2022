@@ -6,6 +6,8 @@ signal airborned;
 
 const DASH_SPEED = 1000
 const MAX_GRAV = 1500
+const DASH_LIMIT = 2
+
 var grounded:bool = true;
 var maxSpeed = 100
 var hforce:float = 50;
@@ -18,6 +20,7 @@ var MU_AIR:float = 0.001;
 var MU_H:float = 0.06;
 
 var isFacingRight = true
+var dashCount = 0
 
 func _ready():
 	$FSM.setState($FSM.states.idle)
@@ -62,6 +65,7 @@ func _physics_process(delta):
 			emit_signal("landed");
 			$AnimatedSprite.play("idle")
 		grounded = true;
+		dashCount = 0
 	else:
 		if grounded:
 			emit_signal("airborned");
