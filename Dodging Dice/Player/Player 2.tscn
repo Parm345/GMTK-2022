@@ -97,8 +97,13 @@ animation = "dash"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -0.25, 1.25 )
 shape = SubResource( 10 )
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -5, -4.5, -4.5, -4.5, -4.5, -5, -3.5, -5, -3.5, -5.5, 3.5, -5.5, 3.5, -5, 4.5, -5, 4.5, -4.5, 5, -4.5, 5, 8, -5, 8 )
 
 [node name="FSM" type="Node2D" parent="."]
 script = ExtResource( 7 )
