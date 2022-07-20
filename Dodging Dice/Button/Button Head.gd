@@ -22,6 +22,7 @@ func _physics_process(delta):
 		just_pressed = false if is_pressed else true;
 		if just_pressed:
 			emit_signal("pressed");
+			queue_free();
 		is_pressed = true;
 	else:
 		is_pressed = false;
