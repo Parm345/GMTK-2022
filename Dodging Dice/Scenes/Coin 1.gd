@@ -12,7 +12,7 @@ func _process(delta):
 
 func _on_Coin_1_body_entered(body):
 	if body.is_in_group("players"):
-		PV.coin_count += 1;
-		coin_counter.set_coin_count(PV.coin_count, true);
+		PV.level_coin_count += 1;
+		coin_counter.set_coin_count(PV.total_coin_count+PV.level_coin_count, true);
 		body.get_node("Audio/Coin 1").play();
 		queue_free();
