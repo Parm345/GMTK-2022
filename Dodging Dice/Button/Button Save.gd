@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 signal pressed;
-onready var win_sound:Node = $"/root/Game/Audio/Level Clear";
+onready var save_sound:Node = $"/root/Game/Audio/Save";
 #var weight:float = 0;
 #var threshold:float = 6;
 #var start_y:float = -15;
@@ -12,6 +12,5 @@ onready var win_sound:Node = $"/root/Game/Audio/Level Clear";
 #	button_head.position.y = max(end_y, start_y + weight/threshold*button_range);
 
 func _on_Button_Head_pressed():
-	win_sound.play();
-	yield(win_sound, "finished");
+	save_sound.play();
 	emit_signal("pressed");
