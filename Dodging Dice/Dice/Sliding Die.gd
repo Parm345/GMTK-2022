@@ -101,7 +101,7 @@ func _physics_process(delta):
 #						target_position = rounded_multiple(global_position-direction, 32);
 			#snap sound
 			if !snap.playing && are_equal_approx(global_position, rounded_multiple(global_position, 32), 1):
-				play_sound(snap, -2);
+				play_sound(snap, -3);
 
 func move(direction):
 	#check for dies in path

@@ -11,6 +11,8 @@ script = ExtResource( 3 )
 [node name="Button Head" type="StaticBody2D" parent="." groups=["button_heads"]]
 position = Vector2( 16, -15 )
 z_index = -1
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Button Head"]
