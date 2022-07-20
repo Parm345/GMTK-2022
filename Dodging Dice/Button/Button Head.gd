@@ -9,7 +9,6 @@ var just_pressed:bool = false;
 var is_pressed:bool = false;
 
 func _physics_process(delta):
-	print(position.y);
 	#move
 	if sinking:
 		position.y += speed*delta;

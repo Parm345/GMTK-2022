@@ -8,3 +8,6 @@ var saved_position:Vector2 = Vector2(0, 0);
 func push_coin_count():
 	total_coin_count += level_coin_count;
 	level_coin_count = 0;
+
+func lose_coin_count():
+	level_coin_count = 0;

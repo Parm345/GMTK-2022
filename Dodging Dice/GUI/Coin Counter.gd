@@ -1,5 +1,6 @@
 extends Control
 
+onready var PV:Node = $"/root/player_variables";
 onready var coin_bar:Node = $"TextureProgress";
 onready var coin_bar_x0:float = coin_bar.rect_position.x;
 onready var label:Node = $"Text Box/Label";
@@ -43,3 +44,6 @@ func digit_count(n):
 		n /= 10;
 		ans += 1;
 	return ans;
+
+func update_coin_count(pop):
+	set_coin_count(PV.total_coin_count+PV.level_coin_count,pop);

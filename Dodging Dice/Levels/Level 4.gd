@@ -16,18 +16,21 @@ func _input(event):
 
 func _on_Restart_Button_button_up(): #hard restart
 	PV.position_saved = false;
-	PV.level_coin_count = 0;
-	coin_counter.set_coin_count(PV.total_coin_count, false);
+	PV.lose_coin_count();
+	coin_counter.update_coin_count(false);
 	player.get_node("CollisionShape2D").set_disabled(true);
 	game.add_level(game.current_level);
 	queue_free();
 
 func _on_Home_Button_button_up():
+	PV.lose_coin_count();
+	coin_counter.update_coin_count(false);
 	player.get_node("CollisionShape2D").set_disabled(true);
 	game.add_level(0);
 	queue_free();
 
 func _on_Button_pressed():
+	PV.push_coin_count();
 	player.get_node("CollisionShape2D").set_disabled(true);
 	var next_level:int = (game.current_level+1)%game.level_count;
 	game.add_level(next_level);
