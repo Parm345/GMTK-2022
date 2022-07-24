@@ -20,7 +20,7 @@ var detected_die:bool = false;
 var rays = [];
 var areas = [];
 
-export var willBecomeBlank = true
+export var willBecomeBlank:int = 1;
 
 func _ready():
 	#get rays
@@ -42,8 +42,14 @@ func _ready():
 #		value = specified_value;
 	dice_sprites[value].visible = true;
 	
-	if !willBecomeBlank:
-		set_modulate(Color.red)
+	if willBecomeBlank==0: #won't become blank
+		set_modulate(Color.red);
+	elif willBecomeBlank==2: #definitely become blank
+		set_modulate(Color.gray);
+	elif willBecomeBlank==3: #value doesn't change
+		set_modulate(Color.green);
+	elif willBecomeBlank==4: #value -= 1
+		set_modulate(Color.yellow);
 
 func _physics_process(delta):
 #	prints(sliding, global_position, target_position, value);
@@ -104,14 +110,15 @@ func _physics_process(delta):
 				play_sound(snap, -3);
 
 func move(direction):
+	var distance:int = 1 if (willBecomeBlank==4 && value != 0) else value;
 	#check for dies in path
-	ray.cast_to = value*tile_size*direction;
+	ray.cast_to = distance*tile_size*direction;
 	ray.force_raycast_update();
 	if ray.is_colliding() && ray.get_collider().is_in_group("dice"):
 		return;
 	#check for walls in path
 	var tile_position:Vector2 = walls.world_to_map(global_position);
-	for i in range(value):
+	for i in range(distance):
 		tile_position += direction;
 		if walls.get_cell(tile_position.x, tile_position.y)==WALL:
 			return;
@@ -119,7 +126,7 @@ func move(direction):
 	if sliding:
 		return;
 	self.direction = direction;
-	target_position = rounded_multiple(global_position,32) + direction*value*tile_size;
+	target_position = rounded_multiple(global_position,32) + direction*distance*tile_size;
 	velocity = speed*direction;
 	randomize_at_stop = true;
 	detected_die = false;
@@ -176,17 +183,26 @@ func grid_distance(v1, v2):
 
 func randomize_value():
 	rng.randomize();
-	if willBecomeBlank:
-		var rand:float = rng.randf_range(0,1);
-		var new_value:int = 0;
-		if rand < 0.4:
-			new_value = 0;
-		else:
-			new_value = ceil((rand-0.4)/0.1);
-		change_value(new_value);
-	else:
-		var rand = rng.randi_range(1, 6)
-		change_value(rand)
+	match willBecomeBlank:
+		1:
+			var rand:float = rng.randf_range(0,1);
+			var new_value:int = 0;
+			if rand < 0.4:
+				new_value = 0;
+			else:
+				new_value = ceil((rand-0.4)/0.1);
+			change_value(new_value);
+		0:
+			var rand = rng.randi_range(1, 6);
+			change_value(rand);
+		2:
+			change_value(0);
+		3:
+			pass;
+		4:
+			if value != 0:
+				change_value(value-1);
+			
 
 func change_value(new_value):
 	dice_sprites[value].visible = false;

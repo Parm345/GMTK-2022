@@ -26,8 +26,8 @@ var dashCount = 0
 
 func _ready():
 	$FSM.setState($FSM.states.idle)
-	if PV.position_saved:
-		self.position = PV.saved_position;
+#	if PV.position_saved:
+#		self.position = PV.saved_position;
 #		print(PV.saved_position);
 
 #func _input(event):

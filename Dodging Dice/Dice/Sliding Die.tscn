@@ -64,34 +64,42 @@ texture = ExtResource( 6 )
 
 [node name="RayCast2D 0" type="RayCast2D" parent="."]
 position = Vector2( 6, 0 )
+enabled = true
 cast_to = Vector2( 0, -16 )
 
 [node name="RayCast2D 1" type="RayCast2D" parent="."]
 position = Vector2( 26, 0 )
+enabled = true
 cast_to = Vector2( 0, -16 )
 
 [node name="RayCast2D 2" type="RayCast2D" parent="."]
 position = Vector2( 32, 6 )
+enabled = true
 cast_to = Vector2( 16, 0 )
 
 [node name="RayCast2D 3" type="RayCast2D" parent="."]
 position = Vector2( 32, 26 )
+enabled = true
 cast_to = Vector2( 16, 0 )
 
 [node name="RayCast2D 4" type="RayCast2D" parent="."]
 position = Vector2( 26, 32 )
+enabled = true
 cast_to = Vector2( 0, 16 )
 
 [node name="RayCast2D 5" type="RayCast2D" parent="."]
 position = Vector2( 6, 32 )
+enabled = true
 cast_to = Vector2( 0, 16 )
 
 [node name="RayCast2D 6" type="RayCast2D" parent="."]
 position = Vector2( 0, 26 )
+enabled = true
 cast_to = Vector2( -16, 0 )
 
 [node name="RayCast2D 7" type="RayCast2D" parent="."]
 position = Vector2( 0, 6 )
+enabled = true
 cast_to = Vector2( -16, 0 )
 
 [node name="Area2D 0" type="Area2D" parent="."]
